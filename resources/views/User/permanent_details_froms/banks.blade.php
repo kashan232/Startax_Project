@@ -33,9 +33,7 @@
   </div>
 
   <div style="display: flex;">
-    <input class="submit_btton" type="submit" value="Submit" />
-    <input class="submit_btton" type="submit" value="Add More" />
-    <input class="submit_btton" type="submit" value="Delete" />
+    <input class="submit_btton" type="submit" value="Save" />
   </div>
 </form>
 
