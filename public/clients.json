@@ -1,0 +1,32 @@
+[
+    {
+        "address_id": 1,
+        "client_id": 1,
+        "flat_door": "testing",
+        "Premise_name": "testing",
+        "road_street": "testing",
+        "pin_code": "32123",
+        "Area_locality": "hyderabad",
+        "town_city": "hyd",
+        "State": "DELHI",
+        "Country": "INDIA",
+        "mobile_phone": "03173859647",
+        "email_address": "shaikhkashan670@gmail.com",
+        "email_address_secondary": "shaikhkashan670@gmail.com"
+    },
+    {
+        "address_id": 2,
+        "client_id": 1,
+        "flat_door": "testing address json",
+        "Premise_name": "testing",
+        "road_street": "testing",
+        "pin_code": "32123",
+        "Area_locality": "hyderabad",
+        "town_city": "hyd",
+        "State": "DELHI",
+        "Country": "INDIA",
+        "mobile_phone": "03173859647",
+        "email_address": "shaikhkashan670@gmail.com",
+        "email_address_secondary": "shaikhkashan670@gmail.com"
+    }
+]
