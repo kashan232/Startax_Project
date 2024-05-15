@@ -47,23 +47,26 @@ class ClientController extends Controller
 
     public function client_detail(Request $request, $id)
     {
-
         if (Auth::id()) {
             $userId = Auth::id();
-            // dd($userId);
             $client_id = $id;
-            // $clients_details = Client::where('id', '=', $client_id)->where('admin_or_user_id', '=', $userId)->get();
             $clients_details = Client::FindOrFail($id);
-            // dd($clients_details);
             $ClientAddreses = ClientAddress::where('client_id', '=', $client_id)->first();
-            // dd($ClientAddreses);
+        
+            // Saare client ke banks retrieve karein
+            $ClientBanks = ClientBank::where('client_id', '=', $client_id)->get();
 
-            // "first_name" => "Muhammad"
-            // "middel_name" => "Kashan"
-            // "last_name" => "Shaikh"
+            $bankData = []; // Default value set karain
+
+            foreach ($ClientBanks as $bank) {
+                // Har bank ka data JSON se decode karein aur $bankData array mein push karein
+                $bankData[] = json_decode($bank->bank_data, true);
+            }
+
             return view('User.client.client_detail', [
                 'clients_details' => $clients_details,
                 'ClientAddreses' => $ClientAddreses,
+                'bankData' => $bankData, // JSON data ko view mein pass karein
             ]);
         } else {
             return redirect()->back();
@@ -136,6 +139,7 @@ class ClientController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             $client_id = $request->input('client_id');
+            
             $bankData = [
                 'IFSC_Code' => $request->input('bank_isfc_code'),
                 'Bank_Account_No' => $request->input('bank_acount_no'),
@@ -143,10 +147,12 @@ class ClientController extends Controller
                 'Account_Type' => $request->input('bank_acount_type')
             ];
 
-            $clientBank = ClientBank::updateOrCreate(
-                ['admin_or_user_id' => $userId, 'client_id' => $client_id],
-                ['bank_data' => json_encode($bankData)]
-            );
+            // New bank data create karein
+            $clientBank = ClientBank::create([
+                'admin_or_user_id' => $userId,
+                'client_id' => $client_id,
+                'bank_data' => json_encode($bankData)
+            ]);
 
             return response()->json(['success' => 'Client Bank details Added Successfully']);
         } else {

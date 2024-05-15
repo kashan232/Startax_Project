@@ -118,59 +118,7 @@
                     <!-- Bank Form -->
                     <div class="inerr-tab-cntnt inner_tabs_collec">
                       <div class="Form_customer" style="margin:30px 0px !important">
-                        <div class="tabel_main" style="height: auto!important;">
-                          <div class="table-responsive text-nowrap">
-                            <table id="userTable">
-                              <thead>
-                                <tr>
-                                  <th>IFSC Code</th>
-                                  <th>Account No</th>
-                                  <th>Bank Name</th>
-                                  <th>Account Type</th>
-                                  <th>Action</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr style="cursor:pointer;" class="odd">
-                                  <td>Muhammad kashan Shaikh</td>
-                                  <td>Individual</td>
-                                  <td>2001-01-02</td>
-                                  <td>212312321</td>
-                                  <td>
-                                    <div class="button-wrapper">
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
-                                    </div>
-                                  </td>
-                                </tr>
-
-                                <tr style="cursor:pointer;" class="odd">
-                                  <td>Muhammad kashan Shaikh</td>
-                                  <td>Individual</td>
-                                  <td>2001-01-02</td>
-                                  <td>212312321</td>
-                                  <td>
-                                    <div class="button-wrapper">
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
-                                    </div>
-                                  </td>
-                                </tr>
-
-                                <tr style="cursor:pointer;" class="odd">
-                                  <td>Muhammad kashan Shaikh</td>
-                                  <td>Individual</td>
-                                  <td>2001-01-02</td>
-                                  <td>212312321</td>
-                                  <td>
-                                    <div class="button-wrapper">
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
-                                    </div>
-                                  </td>
-                                </tr>
-
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
+                        @include('User.permanent_details_froms.banks_list')
                       </div>
                       <div class="Form_customer">
                         @include('User.permanent_details_froms.banks')
