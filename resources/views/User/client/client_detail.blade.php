@@ -27,7 +27,7 @@
       <div class="content-wrapper">
         <div class="content-section">
           <div class="heading_button">
-            <div class="content-section-title">Customer #1</div>
+            <div class="content-section-title">{{ $clients_details->first_name}} {{ $clients_details->middel_name}} {{ $clients_details->last_name}}</div>
             <!-- <a href="#" class="dlect_btn">Year 2024</a> -->
 
             <div class="serch_bar">
