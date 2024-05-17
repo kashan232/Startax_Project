@@ -65,6 +65,108 @@ body {
   }
 } */
 
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--theme-color);
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.accordion .accordion-item {
+  max-width: 600px;
+}
+
+.form_grid_acor .form_input_grp {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 30px;
+  margin-bottom: 20px !important;
+}
+
+.form_grid_acor .form_input_grp.slec {
+  flex-direction: column !important;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.accordion .accordion-item.open .accordion-item-description-wrapper hr {
+  visibility: visible;
+}
+
+.accordion .accordion-item .accordion-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  cursor: pointer;
+  gap: 30px;
+}
+
+.accordion .accordion-item .accordion-item-header span {
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 40px;
+  line-height: 18.1px;
+  color: var(--theme-color);
+  transition: 0.4s ease-in-out;
+  position: relative;
+}
+.accordion .accordion-item .accordion-item-header span::before {
+  content: url(/user_panel_assets/assets/images/plus.png);
+  position: absolute;
+  left: 0;
+}
+.accordion .accordion-item.open .accordion-item-header span::before {
+  content: url(/user_panel_assets/assets/images/minus-sign.png);
+  position: absolute;
+  left: 0;
+}
+
+.form_grid_acor {
+  display: grid;
+}
+.accordion .accordion-item .accordion-item-header input {
+  margin-top: 3px;
+  padding: 4px 7px;
+  background-color: var(--content-bg);
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  color: var(--theme-color);
+  font-size: 13px;
+  height: 35px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.accordion .accordion-item .accordion-item-description-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: 0.4s ease-in-out;
+}
+
+.accordion .accordion-item.open .accordion-item-description-wrapper {
+  grid-template-rows: 1fr;
+}
+.accordion
+  .accordion-item
+  .accordion-item-description-wrapper
+  .accordion-item-description {
+  min-height: 0;
+}
+
+.accordion-item-description a img {
+  width: 7px;
+  height: 7px;
+  object-fit: contain;
+}
+
 .video-bg {
   position: fixed;
   right: 0;

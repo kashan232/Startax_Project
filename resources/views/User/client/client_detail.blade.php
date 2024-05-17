@@ -160,17 +160,15 @@
 
                   <div class="inerr_taabs_content">
                     <!-- Salary Form -->
+                    <!-- Salary Form -->
                     <div class="inerr-tab-cntnt active inner_tabs_collec">
                       <div class="Form_customer">
                         <form action="#">
                           <div class="form_heading">
-                            <h5>Employer Details</h5>
+                            <h5>Employer Wise Salary</h5>
                           </div>
+
                           <div class="form_grid">
-                            <div class="form_input_grp">
-                              <label>Name of the Employer *</label>
-                              <input type="text" placeholder="Enter Your Employer" />
-                            </div>
                             <div class="form_input_grp">
                               <label>Employer Type/Category *</label>
                               <select name="" class="form-control" id="">
@@ -198,195 +196,381 @@
                                 </option>
                               </select>
                             </div>
-                          </div>
-                          <div class="form_heading">
-                            <h5>Salary Information</h5>
-                          </div>
-                          <div class="form_heading-sub">
-                            <span>01 Gross Salary</span>
-                          </div>
-                          <div class="form_heading-sub">
-                            <span>1(a) - Salary as per section 17(1) </span>
-                          </div>
-                          <div class="form_grid">
                             <div class="form_input_grp">
-                              <label>Basic Salary</label>
-                              <input type="text" placeholder="Enter Your Basic Salary" />
+                              <label>Name of the Employer *</label>
+                              <input type="text" placeholder="Enter Your Employer" />
                             </div>
                             <div class="form_input_grp">
-                              <label>House Rent Allowance</label>
-                              <input type="text" placeholder="Enter Your House Rent Allowance" />
-                            </div>
-                          </div>
-                          <div class="form_grid">
-                            <div class="form_input_grp">
-                              <label>Leave Travel Allowance</label>
-                              <input type="text" placeholder="Enter Your Leave Travel Allowance" />
-                            </div>
-                          </div>
-
-                          <div class="form_heading-sub">
-                            <span>‒ 1(b) - Value of perquisites under section
-                              17(2)</span>
-                          </div>
-
-                          <div class="heading-pera">
-                            <p>
-                              Please enter break down for 1(b) - Value of
-                              perquisites under section 17(2). You can refer
-                              to your Form-16 for the data. For more help,
-                              click the sample button.
-                            </p>
-                            <button type="button" class="btn-simple" data-toggle="modal" data-target="#staticBackdrop">
-                              Simple Button
-                            </button>
-                          </div>
-                          <div class="form_heading-sub">
-                            <span>‒ 1(c) - Profits in lieu of salary under
-                              section 17(3)</span>
-                          </div>
-
-                          <div class="heading-pera">
-                            <p>
-                              Please enter break down for 1(c) - Profits in
-                              lieu of salary under section 17(3). You can
-                              refer to your Form-16 for the data. For more
-                              help, click the sample button.
-                            </p>
-                            <button type="button" class="btn-simple" data-toggle="modal" data-target="#staticBackdrop">
-                              Simple Button
-                            </button>
-                          </div>
-                          <div class="form_heading-sub">
-                            <span>‒ 1(d) - Income from retirement benefits
-                              account maintained in a notified country under
-                              section 89A</span>
-                          </div>
-
-                          <div class="heading-pera">
-                            <p>
-                              Please enter break down for 1(d) - Income from
-                              retirement benefits account maintained in a
-                              notified country under section 89A. You can
-                              refer to your Form-16 for the data. For more
-                              help, click the sample button.
-                            </p>
-                            <button type="button" class="btn-simple" data-toggle="modal" data-target="#staticBackdrop">
-                              Simple Button
-                            </button>
-                          </div>
-
-                          <div class="form_grid">
-                            <div class="form_input_grp">
-                              <label>1(e) - Income from retirement benefits
-                                account maintained in a country other than
-                                notified country under section 89A</label>
-                              <input type="text" placeholder="" />
-                            </div>
-                            <div class="form_input_grp">
-                              <label>1(f) - Income taxable during the previous
-                                year on which relief u/s 89A was claimed in
-                                any earlier previous year.</label>
-                              <input type="text" placeholder="" />
-                            </div>
-                          </div>
-
-                          <div class="form_heading-sub">
-                            <span>
-                              2. Exempt allowances under section 10</span>
-                          </div>
-
-                          <div class="heading-pera">
-                            <p>
-                              Please enter break down for 2. Exempt
-                              allowances under section 10. You can refer to
-                              your Form-16 for the data. For more help,
-                              click the sample button.
-                            </p>
-                            <button type="button" class="btn-simple" data-toggle="modal" data-target="#staticBackdrop">
-                              Simple Button
-                            </button>
-                          </div>
-
-                          <div class="form_grid">
-                            <div class="form_input_grp">
-                              <label>HRA Exemption</label>
-                              <input type="text" placeholder="HRA Exemption" />
-                            </div>
-                            <div class="form_input_grp">
-                              <label>LTA Exemption</label>
-                              <input type="text" placeholder="LTA Exemption" />
-                            </div>
-                            <div class="form_input_grp">
-                              <label>2(a). Income claimed for relief under
-                                section 89A Note that you should submit Form
-                                10EE to the Income Tax Department in order
-                                to claim this relief.</label>
-                              <input type="text" placeholder="" />
-                            </div>
-                          </div>
-
-                          <div class="form_heading-sub">
-                            <span> Balance (1 - 2 - 2a)</span>
-                          </div>
-                          <div class="form_heading-sub">
-                            <span> 4. Deductions under section 16</span>
-                          </div>
-
-                          <div class="form_grid">
-                            <div class="form_input_grp">
-                              <label>Standard deduction under section
-                                16(ia)</label>
-                              <input type="text" placeholder="Standard deduction" />
-                            </div>
-                            <div class="form_input_grp">
-                              <label>Professional tax under section
-                                16(iii)</label>
-                              <input type="text" placeholder="Professional tax" />
-                            </div>
-                            <div class="form_input_grp">
-                              <label>
-                                Income Chargeable under the head
-                                'Salaries'</label>
-                              <input type="text" placeholder="0" />
+                              <label>Name of the Category *</label>
+                              <input type="text" placeholder="Enter Your Category" />
                             </div>
                           </div>
 
                           <div class="form_heading">
-                            <h5>TDS Details</h5>
+                            <h5>Gross Salary</h5>
+                          </div>
+
+                          <div class="accordion">
+                            <div class="accordion-item form">
+                              <div class="accordion-item-header">
+                                <span>sallary Details As per 17(1)</span>
+                                <input type="text" readonly />
+                              </div>
+                              <div class="accordion-item-description-wrapper">
+                                <div class="accordion-item-description">
+                                  <div class="form_grid_acor">
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+
+                                    <div class="form_input_grp slec">
+                                      <label>Employer Type/Category *</label>
+                                      <select class="form-control employerTypeSelect">
+                                        <option value="">
+                                          Select Option
+                                        </option>
+                                        <option value="CGovt">
+                                          Central Government
+                                        </option>
+                                        <option value="SGovt">
+                                          State Government
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item form">
+                              <div class="accordion-item-header">
+                                <span>sallary Details As per 17(1)</span>
+                                <input type="text" readonly />
+                              </div>
+                              <div class="accordion-item-description-wrapper">
+                                <div class="accordion-item-description">
+                                  <div class="form_grid_acor">
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+
+                                    <div class="form_input_grp slec">
+                                      <label>Employer Type/Category *</label>
+                                      <select class="form-control employerTypeSelect">
+                                        <option value="">
+                                          Select Option
+                                        </option>
+                                        <option value="CGovt">
+                                          Central Government
+                                        </option>
+                                        <option value="SGovt">
+                                          State Government
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br />
+                          <div class="form_heading">
+                            <h5>Over All Exempation Deduction</h5>
+                          </div>
+
+                          <div class="accordion">
+                            <div class="accordion-item form">
+                              <div class="accordion-item-header">
+                                <span>sallary Details As per 17(1)</span>
+                                <input type="text" readonly />
+                              </div>
+                              <div class="accordion-item-description-wrapper">
+                                <div class="accordion-item-description">
+                                  <div class="form_grid_acor">
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+
+                                    <div class="form_input_grp slec">
+                                      <label>Employer Type/Category *</label>
+                                      <select class="form-control employerTypeSelect">
+                                        <option value="">
+                                          Select Option
+                                        </option>
+                                        <option value="CGovt">
+                                          Central Government
+                                        </option>
+                                        <option value="SGovt">
+                                          State Government
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item form">
+                              <div class="accordion-item-header">
+                                <span>sallary Details As per 17(1)</span>
+                                <input type="text" readonly />
+                              </div>
+                              <div class="accordion-item-description-wrapper">
+                                <div class="accordion-item-description">
+                                  <div class="form_grid_acor">
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+
+                                    <div class="form_input_grp slec">
+                                      <label>Employer Type/Category *</label>
+                                      <select class="form-control employerTypeSelect">
+                                        <option value="">
+                                          Select Option
+                                        </option>
+                                        <option value="CGovt">
+                                          Central Government
+                                        </option>
+                                        <option value="SGovt">
+                                          State Government
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item form">
+                              <div class="accordion-item-header">
+                                <span>sallary Details As per 17(1)</span>
+                                <input type="text" readonly />
+                              </div>
+                              <div class="accordion-item-description-wrapper">
+                                <div class="accordion-item-description">
+                                  <div class="form_grid_acor">
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+
+                                    <div class="form_input_grp slec">
+                                      <label>Employer Type/Category *</label>
+                                      <select class="form-control employerTypeSelect">
+                                        <option value="">
+                                          Select Option
+                                        </option>
+                                        <option value="CGovt">
+                                          Central Government
+                                        </option>
+                                        <option value="SGovt">
+                                          State Government
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item form">
+                              <div class="accordion-item-header">
+                                <span>sallary Details As per 17(1)</span>
+                                <input type="text" readonly />
+                              </div>
+                              <div class="accordion-item-description-wrapper">
+                                <div class="accordion-item-description">
+                                  <div class="form_grid_acor">
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+
+                                    <div class="form_input_grp slec">
+                                      <label>Employer Type/Category *</label>
+                                      <select class="form-control employerTypeSelect">
+                                        <option value="">
+                                          Select Option
+                                        </option>
+                                        <option value="CGovt">
+                                          Central Government
+                                        </option>
+                                        <option value="SGovt">
+                                          State Government
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item form">
+                              <div class="accordion-item-header">
+                                <span>sallary Details As per 17(1)</span>
+                                <input type="text" readonly />
+                              </div>
+                              <div class="accordion-item-description-wrapper">
+                                <div class="accordion-item-description">
+                                  <div class="form_grid_acor">
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+                                    <div class="form_input_grp">
+                                      <label>Name of the Inner input</label>
+                                      <input type="text" />
+                                    </div>
+
+                                    <div class="form_input_grp slec">
+                                      <label>Employer Type/Category *</label>
+                                      <select class="form-control employerTypeSelect">
+                                        <option value="">
+                                          Select Option
+                                        </option>
+                                        <option value="CGovt">
+                                          Central Government
+                                        </option>
+                                        <option value="SGovt">
+                                          State Government
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <br />
+
+                          <div class="form_heading">
+                            <h5>Employer Wise Salary</h5>
                           </div>
 
                           <div class="form_grid">
                             <div class="form_input_grp">
-                              <label>Tax Deducted at source on Salary</label>
-
-                              <input type="text" placeholder="Standard deduction" />
-                              <span>
-                                In your Form-16, find this under Part-A:
-                                Total of Amount of tax deposited / Remitted
-                                <button type="button" class="btn-simple mt-2" data-toggle="modal" data-target="#staticBackdrop">
-                                  CLICK TO SEE SAMPLE
-                                </button>
-                              </span>
+                              <label>Employer Type/Category *</label>
+                              <select name="" class="form-control" id="">
+                                <option>Select Option</option>
+                                <option value="CGovt">
+                                  Central Government
+                                </option>
+                                <option value="SGovt">
+                                  State Government
+                                </option>
+                                <option value="PSU">
+                                  Public Sector Unit
+                                </option>
+                                <option value="PE">
+                                  Pensioners - Central Government
+                                </option>
+                                <option value="PESG">
+                                  Pensioners - State Government
+                                </option>
+                                <option value="PEPS">
+                                  Pensioners - Public sector undertaking
+                                </option>
+                                <option value="PEO">
+                                  Pensioners - Others
+                                </option>
+                              </select>
                             </div>
                             <div class="form_input_grp">
-                              <label>TAN of the Employer</label>
-
-                              <input type="text" placeholder="Professional tax" />
-                              <span>
-                                In your Form-16, find this under Part-A -
-                                TAN of Deductor
-                                <button type="button" class="btn-simple mt-2" data-toggle="modal" data-target="#staticBackdrop">
-                                  CLICK TO SEE SAMPLE
-                                </button>
-                              </span>
+                              <label>Name of the Employer *</label>
+                              <input type="text" placeholder="Enter Your Employer" />
+                            </div>
+                            <div class="form_input_grp">
+                              <label>Name of the Category *</label>
+                              <input type="text" placeholder="Enter Your Category" />
                             </div>
                           </div>
 
                           <input class="submit_btton" type="submit" value="Submit" />
                         </form>
+
                       </div>
                     </div>
+                    <!-- Salary Form -->
                     <!-- Salary Form -->
                     <!-- Business Form -->
                     <div class="inerr-tab-cntnt inner_tabs_collec">
@@ -2338,7 +2522,9 @@
   });
 </script>
 
+<script>
 
+</script>
 
 </body>
 

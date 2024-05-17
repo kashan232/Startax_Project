@@ -142,6 +142,16 @@ toggleButton.addEventListener("click", () => {
     });
   });
 }
+{
+  document.querySelectorAll(".profile-img").forEach(function (element) {
+    element.addEventListener("click", function () {
+      var filter_data = document.querySelectorAll(".profile_click");
+      filter_data.forEach(function (element) {
+        element.classList.toggle("Activeprofile");
+      });
+    });
+  });
+}
 
 {
   var toggleButtons = document.getElementsByClassName("button_show");
@@ -170,17 +180,97 @@ toggleButton.addEventListener("click", () => {
 
   for (var i = 0; i < toggleButtonstwo.length; i++) {
     toggleButtonstwo[i].addEventListener("click", function () {
-      // Remove "hide" class from all button_show elements
       for (var j = 0; j < dataElementstwo.length; j++) {
         dataElementstwo[j].classList.remove("hide");
       }
-
-      // Find the corresponding button_show element
       var dataIndex = Array.prototype.indexOf.call(toggleButtonstwo, this);
       if (dataIndex !== -1 && dataIndex < dataElementstwo.length) {
-        // Toggle the "hide" class for the clicked element
         dataElementstwo[dataIndex].classList.toggle("hide");
       }
     });
   }
+}
+
+{
+  const tabsNav = document.querySelectorAll(".inner_click");
+  const tabsContent = document.querySelectorAll(".module_data.Show_mod_iner");
+  const backBtn = document.querySelectorAll(".backBtn");
+
+  function removeActiveClass() {
+    tabsNav.forEach((item) => {
+      item.classList.remove("active");
+    });
+
+    tabsContent.forEach((content) => {
+      content.classList.remove("active");
+    });
+  }
+
+  tabsNav.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      removeActiveClass();
+
+      item.classList.add("active");
+      tabsContent[index].classList.add("active");
+    });
+  });
+
+  backBtn.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      removeActiveClass();
+    });
+  });
+}
+
+{
+  document.addEventListener("DOMContentLoaded", function () {
+    const accordionItems = document.querySelectorAll(".accordion-item");
+    // if (accordionItems.length > 0) {
+    //   accordionItems[0].classList.add("open");
+    // }
+    accordionItems.forEach((item) => {
+      const header = item.querySelector(".accordion-item-header");
+      header.addEventListener("click", () => {
+        document.querySelectorAll(".accordion-item").forEach((otherItem) => {
+          if (otherItem !== item && otherItem.classList.contains("open")) {
+            otherItem.classList.remove("open");
+          }
+        });
+        item.classList.toggle("open");
+      });
+    });
+  });
+}
+
+{
+  document.querySelectorAll(".employerTypeSelect").forEach((select) => {
+    select.addEventListener("change", function () {
+      const selectedOption = this.options[this.selectedIndex];
+
+      if (selectedOption.value) {
+        const formGrid = this.closest(".form_input_grp.slec");
+        const dynamicInputGrp = document.createElement("div");
+        dynamicInputGrp.classList.add("form_input_grp", "dynamic-input");
+
+        const dynamicLabel = document.createElement("label");
+        dynamicLabel.textContent = `Additional Information for ${selectedOption.text}`;
+
+        const dynamicInput = document.createElement("input");
+        dynamicInput.type = "text";
+
+        dynamicInputGrp.appendChild(dynamicLabel);
+        dynamicInputGrp.appendChild(dynamicInput);
+
+        // Insert the dynamic input group after the first child
+        if (formGrid.firstChild && formGrid.firstChild.nextSibling) {
+          formGrid.insertBefore(
+            dynamicInputGrp,
+            formGrid.firstChild.nextSibling
+          );
+        } else {
+          formGrid.appendChild(dynamicInputGrp);
+        }
+      }
+    });
+  });
 }
