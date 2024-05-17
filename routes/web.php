@@ -30,7 +30,7 @@ Route::get('/client-detail/{id}', [ClientController::class, 'client_detail'])->n
 Route::post('/edit-client-basic-details', [ClientController::class, 'edit_client_basic_details'])->name('edit-client-basic-details');
 Route::post('/store-client-address', [ClientController::class, 'store_client_address'])->name('store-client-address');
 Route::post('/store-client-bank', [ClientController::class, 'store_client_bank'])->name('store-client-bank');
-Route::get('/delete-store-client-bank/{id}', [ClientController::class, 'delete_store_client_bank'])->name('delete-store-client-bank');
+Route::get('/delete-store-client-bank', [ClientController::class, 'delete_store_client_bank'])->name('delete-store-client-bank');
 
 
 Route::get('/dashboard', function () {

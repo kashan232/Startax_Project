@@ -159,4 +159,22 @@ class ClientController extends Controller
             return response()->json(['error' => 'User not authenticated'], 403);
         }
     }
+
+    public function delete_store_client_bank(Request $request)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $id =$request->input('id');
+            $clientBank = ClientBank::find($id);
+            if ($clientBank && $clientBank->admin_or_user_id == $userId) {
+                $clientBank->delete();
+                return response()->json(['success' => 'Bank details deleted successfully']);
+            } else {
+                return response()->json(['error' => 'Unauthorized or bank details not found'], 403);
+            }
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 403);
+        }
+    }
+
 }
