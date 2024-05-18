@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\ClientAddress;
 use App\Models\ClientBank;
+use App\Models\ClientSalary;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -178,4 +179,36 @@ class ClientController extends Controller
             return response()->json(['error' => 'User not authenticated'], 403);
         }
     }
+
+    public function store_client_salary(Request $request)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $client_id = $request->input('client_id');
+            $SalaryData = [
+                'salary_type' => $request->input('salary_type'),
+                'em_name' => $request->input('em_name'),
+                'employer_category' => $request->input('employer_category'),
+                'Salary_1' => $request->input('Salary_1'),
+                'perquisites_value' => $request->input('perquisites_value'),
+                'profits_in_lieu' => $request->input('profits_in_lieu'),
+                'exempt_allowance' => $request->input('exempt_allowance'),
+                'deduction_us_16' => $request->input('deduction_us_16'),
+                'tds_tax' => $request->input('tds_tax'),
+                'tds_tan_emp' => $request->input('tds_tan_emp'),
+            ];
+
+            // New bank data create karein
+            $ClientSalary = ClientSalary::create([
+                'admin_or_user_id' => $userId,
+                'client_id' => $client_id,
+                'salary_data' => json_encode($SalaryData)
+            ]);
+
+            return response()->json(['success' => 'Client Salary details Added Successfully']);
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 403);
+        }
+    }
+
 }

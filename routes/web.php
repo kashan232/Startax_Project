@@ -32,6 +32,10 @@ Route::post('/store-client-address', [ClientController::class, 'store_client_add
 Route::post('/store-client-bank', [ClientController::class, 'store_client_bank'])->name('store-client-bank');
 Route::get('/delete-store-client-bank', [ClientController::class, 'delete_store_client_bank'])->name('delete-store-client-bank');
 
+// Income routes
+// Salary routes
+Route::post('/store-client-salary', [ClientController::class, 'store_client_salary'])->name('store-client-salary');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
