@@ -52,21 +52,23 @@ class ClientController extends Controller
             $client_id = $id;
             $clients_details = Client::FindOrFail($id);
             $ClientAddreses = ClientAddress::where('client_id', '=', $client_id)->first();
-        
-            // Saare client ke banks retrieve karein
+
+            // Retrieve all client banks
             $ClientBanks = ClientBank::where('client_id', '=', $client_id)->get();
 
-            $bankData = []; // Default value set karain
+            $bankData = []; // Default value set
 
             foreach ($ClientBanks as $bank) {
-                // Har bank ka data JSON se decode karein aur $bankData array mein push karein
-                $bankData[] = json_decode($bank->bank_data, true);
+                // Decode each bank's data and include the bank ID
+                $data = json_decode($bank->bank_data, true);
+                $data['id'] = $bank->id; // Include the bank ID
+                $bankData[] = $data;
             }
 
             return view('User.client.client_detail', [
                 'clients_details' => $clients_details,
                 'ClientAddreses' => $ClientAddreses,
-                'bankData' => $bankData, // JSON data ko view mein pass karein
+                'bankData' => $bankData, // Pass the JSON data to the view
             ]);
         } else {
             return redirect()->back();
@@ -139,7 +141,7 @@ class ClientController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             $client_id = $request->input('client_id');
-            
+
             $bankData = [
                 'IFSC_Code' => $request->input('bank_isfc_code'),
                 'Bank_Account_No' => $request->input('bank_acount_no'),
@@ -164,7 +166,7 @@ class ClientController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            $id =$request->input('id');
+            $id = $request->input('id');
             $clientBank = ClientBank::find($id);
             if ($clientBank && $clientBank->admin_or_user_id == $userId) {
                 $clientBank->delete();
@@ -176,5 +178,4 @@ class ClientController extends Controller
             return response()->json(['error' => 'User not authenticated'], 403);
         }
     }
-
 }
