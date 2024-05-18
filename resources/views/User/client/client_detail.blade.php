@@ -170,39 +170,23 @@
 
                           <div class="form_grid">
                             <div class="form_input_grp">
-                              <label>Employer Type/Category *</label>
-                              <select name="" class="form-control" id="">
-                                <option>Select Option</option>
-                                <option value="CGovt">
-                                  Central Government
-                                </option>
-                                <option value="SGovt">
-                                  State Government
-                                </option>
-                                <option value="PSU">
-                                  Public Sector Unit
-                                </option>
-                                <option value="PE">
-                                  Pensioners - Central Government
-                                </option>
-                                <option value="PESG">
-                                  Pensioners - State Government
-                                </option>
-                                <option value="PEPS">
-                                  Pensioners - Public sector undertaking
-                                </option>
-                                <option value="PEO">
-                                  Pensioners - Others
-                                </option>
-                              </select>
-                            </div>
-                            <div class="form_input_grp">
                               <label>Name of the Employer *</label>
                               <input type="text" placeholder="Enter Your Employer" />
                             </div>
                             <div class="form_input_grp">
-                              <label>Name of the Category *</label>
-                              <input type="text" placeholder="Enter Your Category" />
+                              <label>Employer Type/Category *</label>
+                              <select name="" class="form-control" id="">
+                                <option>Select Option</option>
+                                <option value="CGovt">Central Government</option>
+                                <option value="SGOV">State Government</option>
+                                <option value="PSU">Public Sector Undertaking</option>
+                                <option value="PE">Pensioners - Central Government</option>
+                                <option value="PESG">Pensioners - State Government</option>
+                                <option value="PEPS">Pensioners - Public sector undertaking</option>
+                                <option value="PEO">Pensioners - Others</option>
+                                <option value="OTH">Others</option>
+                                <option value="NA">Not Applicable</option>
+                              </select>
                             </div>
                           </div>
 
