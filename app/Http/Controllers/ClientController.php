@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BankCode;
 use App\Models\Client;
 use App\Models\ClientAddress;
 use App\Models\ClientBank;
@@ -258,6 +259,23 @@ class ClientController extends Controller
                 ]);
             } else {
                 return response()->json(['message' => 'Pincode not found'], 404);
+            }
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 403);
+        }
+
+    }
+
+    public function getBankDetails($ifsc)
+    {
+        if (Auth::id()) {
+            $bank = BankCode::where('IFSC_Code', $ifsc)->first();
+            if ($bank) {
+                return response()->json([
+                    'bank_name' => $bank->Bank_Name
+                ]);
+            } else {
+                return response()->json(['message' => 'IFSC code not found'], 404);
             }
         } else {
             return response()->json(['error' => 'User not authenticated'], 403);

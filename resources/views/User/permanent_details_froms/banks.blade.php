@@ -7,16 +7,17 @@
     <div class="form_input_grp">
       <input type="hidden" name="client_id" value="{{ $clients_details->id }}">
       <label>IFSC Code</label>
-      <input type="text" name="bank_isfc_code" placeholder="Enter Your IFSC Code" />
+      <input type="text" name="bank_ifsc_code" class="ifsc_code" placeholder="Enter Your IFSC Code" />
     </div>
 
     <div class="form_input_grp">
       <label>Bank Account No</label>
       <input type="number" name="bank_acount_no" placeholder="Enter Your Bank Account No" />
     </div>
+
     <div class="form_input_grp">
       <label>Bank Name</label>
-      <input type="text" name="bank_name" placeholder="Enter Your Bank Name" />
+      <input type="text" name="bank_name" class="bank_name" placeholder="Bank Name" readonly />
     </div>
     <div class="form_input_grp">
       <label>Account Type</label>
@@ -38,6 +39,36 @@
 </form>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  function initializeIfscLookup(ifscClass, bankNameClass) {
+    $(document).on('input', ifscClass, function() {
+      const ifscCode = $(this).val();
+
+      if (ifscCode.length > 0) { // Assuming IFSC code is non-empty
+        $.ajax({
+          url: `/get-bank-details/${ifscCode}`,
+          method: 'GET',
+          success: function(data) {
+            if (data.bank_name) {
+              // Update the bank name input
+              $(bankNameClass).val(data.bank_name);
+            } else {
+              console.error('IFSC code not found');
+            }
+          },
+          error: function(error) {
+            console.error('Error fetching bank details:', error);
+          }
+        });
+      }
+    });
+  }
+
+  // Initialize the IFSC lookup
+  $(document).ready(function() {
+    initializeIfscLookup('.ifsc_code', '.bank_name');
+  });
+</script>
 <script>
   $(document).ready(function() {
     $('form').on('submit', function(e) {
