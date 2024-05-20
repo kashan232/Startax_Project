@@ -1,4 +1,3 @@
-<div class="Form_customer">
   <form action="{{ route('store-client-salary') }}" method="post">
     @csrf
     <div class="form_heading">
@@ -33,6 +32,93 @@
           <option value="NA">Not Applicable</option>
         </select>
       </div>
+      <div class="form_input_grp">
+        <label>Employer Address</label>
+        <input type="text" name="em_address" placeholder="Enter Your Employer Address" />
+      </div>
+
+      <div class="form_input_grp">
+        <label>Pincode</label>
+        <input type="number" name="pin_code_salry"  placeholder="Enter Your Pincode" />
+      </div>
+
+      <div class="form_input_grp">
+        <label>District</label>
+        <input type="text" name="district_salary" placeholder="Enter Your Town" />
+      </div>
+
+      <div class="form_input_grp">
+        <label>State </label>
+        <select name="State_salary" class="form-control" id="">
+          <option>Select Option</option>
+          <option value="ANDHRAPRADESH">ANDHRA PRADESH</option>
+          <option value="ARUNACHALPRADESH">ARUNACHAL PRADESH</option>
+          <option value="ASSAM">ASSAM</option>
+          <option value="BIHAR">BIHAR</option>
+          <option value="CHANDIGARH">CHANDIGARH</option>
+          <option value="CHHATISHGARH">CHHATISHGARH</option>
+          <option value="DADRANAGARHAVELI">DADRA &amp; NAGAR HAVELI</option>
+          <option value="DAMANDIU">DAMAN &amp; DIU</option>
+          <option selected="selected" value="DELHI">
+            DELHI
+          </option>
+          <option value="GOA">GOA</option>
+          <option value="GUJARAT">GUJARAT</option>
+          <option value="HARYANA">HARYANA</option>
+          <option value="HIMACHALPRADESH">
+            HIMACHAL PRADESH
+          </option>
+          <option value="JAMMUKASHMIR">
+            JAMMU &amp; KASHMIR
+          </option>
+          <option value="JHARKHAND">JHARKHAND</option>
+          <option value="KARNATAKA">KARNATAKA</option>
+          <option value="KERALA">KERALA</option>
+          <option value="LAKHSWADEEP">
+            LAKHSWADEEP
+          </option>
+          <option value="LADAKH">LADAKH</option>
+          <option value="MADHYAPRADESH">
+            MADHYA PRADESH
+          </option>
+          <option value="MAHARASHTRA">
+            MAHARASHTRA
+          </option>
+          <option value="MANIPUR">MANIPUR</option>
+          <option value="MEGHALAYA">MEGHALAYA</option>
+          <option value="MIZORAM">MIZORAM</option>
+          <option value="NAGALAND">NAGALAND</option>
+          <option value="ORISSA">ORISSA</option>
+          <option value="PONDICHERRY">
+            PONDICHERRY
+          </option>
+          <option value="PUNJAB">PUNJAB</option>
+          <option value="RAJASTHAN">RAJASTHAN</option>
+          <option value="SIKKIM">SIKKIM</option>
+          <option value="TAMILNADU">
+            TAMIL NADU
+          </option>
+          <option value="TELANGANA">TELANGANA</option>
+          <option value="TRIPURA">TRIPURA</option>
+          <option value="UTTARANCHAL">
+            UTTARAKHAND
+          </option>
+          <option value="UTTARPRADESH">
+            UTTAR PRADESH
+          </option>
+          <option value="WESTBENGAL">
+            WEST BENGAL
+          </option>
+          <option value="StateoutsideIndia">
+            State outside India
+          </option>
+          <option value="NotInit"></option>
+        </select>
+      </div>
+
+
+     
+
     </div>
 
     <div class="form_heading">
@@ -185,7 +271,7 @@
                 <label>Leave Travel Concession</label>
                 <input type="text" name="exempation_house_rent" />
               </div>
-              
+
               <div class="form_input_grp slec">
                 <label>Select Exemption Detail</label>
                 <select class="form-control employerTypeSelect">
@@ -223,7 +309,7 @@
         </div>
       </div>
     </div>
-    <br/>
+    <br />
 
     <div class="form_heading">
       <h5>TDS Details</h5>
@@ -243,29 +329,56 @@
     <input class="submit_btton" type="submit" value="Submit" />
   </form>
 
-</div>
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    document.querySelector('input[name="pin_code_salry"]').addEventListener('input', function() {
+      const pincode = this.value;
 
+      if (pincode.length === 6) { // Assuming pincodes are 6 digits long
+        fetch(`/get-location-details/${pincode}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.state && data.district) {
+              // Update the state dropdown
+              const stateSelect = document.querySelector('select[name="State_salary"]');
+              for (let option of stateSelect.options) {
+                if (option.value === data.state) {
+                  option.selected = true;
+                  break;
+                }
+              }
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $('form').on('submit', function(e) {
-      e.preventDefault();
-      var formData = $(this).serialize(); // Form data ko serialize karein
-      $.ajax({
-        url: $(this).attr('action'),
-        type: $(this).attr('method'),
-        data: formData,
-        success: function(response) {
-          // Success message ko display karein ya kuch aur karein
-          console.log(response);
-        },
-        error: function(xhr, status, error) {
-          // Error handling
-          console.error(xhr.responseText);
-        }
+              // Update the district input
+              document.querySelector('input[name="district_salary"]').value = data.district;
+            } else {
+              console.error('Pincode not found');
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching location details:', error);
+          });
+      }
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      $('form').on('submit', function(e) {
+        e.preventDefault();
+        var formData = $(this).serialize(); // Form data ko serialize karein
+        $.ajax({
+          url: $(this).attr('action'),
+          type: $(this).attr('method'),
+          data: formData,
+          success: function(response) {
+            // Success message ko display karein ya kuch aur karein
+            console.log(response);
+          },
+          error: function(xhr, status, error) {
+            // Error handling
+            console.error(xhr.responseText);
+          }
+        });
       });
     });
-  });
-</script>
+  </script>

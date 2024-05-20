@@ -953,12 +953,39 @@ body.light-mode .video-bg:before {
   background-color: var(--theme-bg-color);
 }
 
+.form_grid.main5-col {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr max-content;
+  align-items: center;
+}
+.cancel {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  cursor: pointer;
+  background-color: var(--content-bg);
+}
+.cancel i {
+  color: var(--theme-color);
+  font-size: 15px;
+}
+
+.append1:not(.cancel.append1) {
+  margin-bottom: 10px;
+}
+
 .heading_button {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
   align-items: center;
   margin-bottom: 30px;
   gap: 40px;
+}
+.heading_button .button_data button{
+  padding: 12px 24px;
+  font-size: 13px;
 }
 .heading_button .dlect_btn {
   padding: 10px 35px;

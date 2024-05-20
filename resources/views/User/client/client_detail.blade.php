@@ -33,6 +33,9 @@
             <div class="serch_bar">
               <input type="text" placeholder="Search Here" />
             </div>
+            <div class="button_data">
+              <button>Change Income Type</button>
+            </div>
 
             <div class="yearSelect">
               <select name="" id="" class="form-control">
@@ -155,6 +158,14 @@
                         <span><i class="far fa-window-restore"></i></span>
                         <span>Other Income</span>
                       </li>
+                      <li>
+                        <span><i class="far fa-window-restore"></i></span>
+                        <span>VDA Income</span>
+                      </li>
+                      <li>
+                        <span><i class="far fa-window-restore"></i></span>
+                        <span>Exempt Income</span>
+                      </li>
                     </ul>
                   </div>
 
@@ -162,7 +173,13 @@
                     <!-- Salary Form -->
                     <!-- Salary Form -->
                     <div class="inerr-tab-cntnt active inner_tabs_collec">
-                      @include('User.income_forms.salary')
+                      <div class="Form_customer" style="margin:30px 0px !important">
+                        @include('User.income_forms.salary.list_salary')
+                      </div>
+
+                      <div class="Form_customer">
+                        @include('User.income_forms.salary.salary')
+                      </div>
                     </div>
                     <!-- Salary Form -->
                     <!-- Salary Form -->
@@ -1547,6 +1564,105 @@
                       </div>
                     </div>
                     <!-- Other Income -->
+
+                    <!-- VDA Income -->
+                    <div class="inerr-tab-cntnt inner_tabs_collec">
+                      <div class="Form_customer">
+                        <div class="form_heading">
+                          <h5>VDA Income</h5>
+                        </div>
+
+                      </div>
+                    </div>
+                    <!-- VDA Income -->
+
+                    <!-- Exempt Income -->
+                    <div class="inerr-tab-cntnt inner_tabs_collec">
+                      <div class="Form_customer">
+                        <div class="form_heading">
+                          <h5>Agriculture Income</h5>
+                        </div>
+
+                        <div class="form_grid">
+                          <div class="form_input_grp">
+                            <label>Gross Agriculture Receipt</label>
+                            <input type="text" placeholder="Enter Your Other Income" />
+                            <span>
+                              Specify gross agricultural income
+                            </span>
+                          </div>
+                          <div class="form_input_grp">
+                            <label>Expenditure On Agriculture</label>
+                            <input type="text" placeholder="Enter Your Amount" />
+                            <span>
+                              Specify expenditure on agriculture
+                              sources</span>
+                          </div>
+                          <div class="form_input_grp">
+                            <label>Unabsorbed Agriculture Loss</label>
+                            <input type="text" placeholder="Enter Your Amount" />
+                            <span>
+                              Specify unabsorbed agriculture loss</span>
+                          </div>
+                          <div class="form_input_grp">
+                            <label>Net Agriculture Receipt
+                              Auto-calculated</label>
+                            <input type="text" placeholder="Enter Your Amount" />
+                          </div>
+                        </div>
+                        <div class="form_heading">
+                          <h5>Agriculture Land Details</h5>
+                          <span>
+                            These fields are optional. Enter these values
+                            if Net Agriculture Receipt exceeds Rs. 5
+                            Lakhs:
+                          </span>
+                        </div>
+
+                        <div class="addMore-Rap">
+                          <div id="formContainer" class="form_grid main5-col">
+                            <div class="form_input_grp">
+                              <label>Properties</label>
+                              <input type="text" placeholder="Enter Your Employer" class="append1" />
+                            </div>
+                            <div class="form_input_grp">
+                              <label>PinCode</label>
+                              <input class="append1" type="text" placeholder="Enter Your Category" />
+                            </div>
+                            <div class="form_input_grp">
+                              <label>Measurement Of Land</label>
+                              <input class="append1" type="text" placeholder="Enter Your Category" />
+                            </div>
+                            <div class="form_input_grp">
+                              <label>Agri Land Owned Flag</label>
+                              <select name="" class="form-control append1">
+                                <option>Select Option</option>
+                                <option value="O">O - Owned</option>
+                                <option value="H">Held on lease</option>
+                              </select>
+                            </div>
+                            <div class="form_input_grp">
+                              <label>Agri Land Irrigated Flag</label>
+                              <select name="" class="append1 form-control">
+                                <option>Select Option</option>
+                                <option value="IRG">Irrigated</option>
+                                <option value="H">- Rain-fed</option>
+                              </select>
+                            </div>
+                            <div class="form_input_grp">
+                              <div class="cancel append1">
+                                <i class="fa-solid fa-xmark"></i>
+                              </div>
+                            </div>
+                          </div>
+                          <button class="submit_btton" onclick="addMore()">
+                            Add more
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Exempt Income -->
+
                   </div>
                 </div>
               </div>
@@ -2117,7 +2233,20 @@
 </script>
 
 <script>
+function addMore() {
+  const formContainer = document.getElementById("formContainer");
+  const inputGroups = formContainer.querySelectorAll(".form_input_grp");
 
+  inputGroups.forEach((group) => {
+    const lastInput = group.querySelector(".append1:last-of-type");
+
+    if (lastInput) {
+      const newInput = lastInput.cloneNode(true);
+      newInput.value = "";
+      group.appendChild(newInput);
+    }
+  });
+}
 </script>
 
 </body>

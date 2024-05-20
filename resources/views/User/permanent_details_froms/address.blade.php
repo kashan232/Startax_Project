@@ -21,7 +21,7 @@
       <input type="text" name="road_street" placeholder="Enter Your Road" value="{{ $ClientAddreses->road_street }}" />
     </div>
     <div class="form_input_grp">
-      <label>Pincode </label>
+      <label>Pincode</label>
       <input type="number" name="pin_code" placeholder="Enter Your Pincode" value="{{ $ClientAddreses->pin_code }}" />
     </div>
   </div>
@@ -32,8 +32,8 @@
                                     " value="{{ $ClientAddreses->Area_locality }}" />
     </div>
     <div class="form_input_grp">
-      <label>Town / City * </label>
-      <input type="text" name="town_city" placeholder="Enter Your Town" value="{{ $ClientAddreses->town_city }}" />
+        <label>District</label>
+        <input type="text" name="district" placeholder="Enter Your Town" value="{{ $ClientAddreses->district }}" />
     </div>
   </div>
   <div class="form_grid">
@@ -41,26 +41,14 @@
       <label>State </label>
       <select name="State" class="form-control" id="">
         <option>Select Option</option>
-        <option value="ANDHRAPRADESH">
-          ANDHRA PRADESH
-        </option>
-        <option value="ARUNACHALPRADESH">
-          ARUNACHAL PRADESH
-        </option>
+        <option value="ANDHRAPRADESH">ANDHRA PRADESH</option>
+        <option value="ARUNACHALPRADESH">ARUNACHAL PRADESH</option>
         <option value="ASSAM">ASSAM</option>
         <option value="BIHAR">BIHAR</option>
-        <option value="CHANDIGARH">
-          CHANDIGARH
-        </option>
-        <option value="CHHATISHGARH">
-          CHHATISHGARH
-        </option>
-        <option value="DADRANAGARHAVELI">
-          DADRA &amp; NAGAR HAVELI
-        </option>
-        <option value="DAMANDIU">
-          DAMAN &amp; DIU
-        </option>
+        <option value="CHANDIGARH">CHANDIGARH</option>
+        <option value="CHHATISHGARH">CHHATISHGARH</option>
+        <option value="DADRANAGARHAVELI">DADRA &amp; NAGAR HAVELI</option>
+        <option value="DAMANDIU">DAMAN &amp; DIU</option>
         <option selected="selected" value="DELHI">
           DELHI
         </option>
@@ -164,3 +152,34 @@
   </div>
   <input class="submit_btton" type="submit" value="Submit" />
 </form>
+
+<script>
+    document.querySelector('input[name="pin_code"]').addEventListener('input', function () {
+        const pincode = this.value;
+
+        if (pincode.length === 6) { // Assuming pincodes are 6 digits long
+            fetch(`/get-location-details/${pincode}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.state && data.district) {
+                        // Update the state dropdown
+                        const stateSelect = document.querySelector('select[name="State"]');
+                        for (let option of stateSelect.options) {
+                            if (option.value === data.state) {
+                                option.selected = true;
+                                break;
+                            }
+                        }
+
+                        // Update the district input
+                        document.querySelector('input[name="district"]').value = data.district;
+                    } else {
+                        console.error('Pincode not found');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching location details:', error);
+                });
+        }
+    });
+</script>

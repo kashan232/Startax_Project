@@ -31,6 +31,10 @@ Route::post('/edit-client-basic-details', [ClientController::class, 'edit_client
 Route::post('/store-client-address', [ClientController::class, 'store_client_address'])->name('store-client-address');
 Route::post('/store-client-bank', [ClientController::class, 'store_client_bank'])->name('store-client-bank');
 Route::get('/delete-store-client-bank', [ClientController::class, 'delete_store_client_bank'])->name('delete-store-client-bank');
+Route::get('/delete-store-client-income-salary', [ClientController::class, 'delete_store_client_income_salary'])->name('delete-store-client-income-salary');
+
+Route::get('/get-location-details/{pincode}', [ClientController::class, 'getLocationDetails']);
+
 
 // Income routes
 // Salary routes

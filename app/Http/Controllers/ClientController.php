@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\ClientAddress;
 use App\Models\ClientBank;
 use App\Models\ClientSalary;
+use App\Models\PinCode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -66,10 +67,23 @@ class ClientController extends Controller
                 $bankData[] = $data;
             }
 
+             // Retrieve all client salaries
+            $ClientSalaries = ClientSalary::where('client_id', '=', $client_id)->get();
+            $salaryData = []; // Default value set
+            
+            foreach ($ClientSalaries as $salary) {
+                // Decode each salary's data and include the salary ID
+                $data = json_decode($salary->salary_data, true);
+                $data['id'] = $salary->id; // Include the salary ID
+                $salaryData[] = $data;
+            }
+            
+
             return view('User.client.client_detail', [
                 'clients_details' => $clients_details,
                 'ClientAddreses' => $ClientAddreses,
                 'bankData' => $bankData, // Pass the JSON data to the view
+                'salaryData' => $salaryData, // Pass the salary JSON data to the view
             ]);
         } else {
             return redirect()->back();
@@ -122,7 +136,7 @@ class ClientController extends Controller
                 'road_street'          => $request->road_street,
                 'pin_code'          => $request->pin_code,
                 'Area_locality'          => $request->Area_locality,
-                'town_city'          => $request->town_city,
+                'district'          => $request->district,
                 'State'          => $request->State,
                 'Country'          => $request->Country,
                 'mobile_phone'          => $request->mobile_phone,
@@ -180,6 +194,23 @@ class ClientController extends Controller
         }
     }
 
+    public function delete_store_client_income_salary(Request $request)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $id = $request->input('id');
+            $ClientSalary = ClientSalary::find($id);
+            if ($ClientSalary && $ClientSalary->admin_or_user_id == $userId) {
+                $ClientSalary->delete();
+                return response()->json(['success' => 'Salary details deleted successfully']);
+            } else {
+                return response()->json(['error' => 'Unauthorized or Salary details not found'], 403);
+            }
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 403);
+        }
+    }
+
     public function store_client_salary(Request $request)
     {
         if (Auth::id()) {
@@ -188,6 +219,10 @@ class ClientController extends Controller
             $SalaryData = [
                 'salary_type' => $request->input('salary_type'),
                 'em_name' => $request->input('em_name'),
+                'em_address' => $request->input('em_address'),
+                'pin_code_salry' => $request->input('pin_code_salry'),
+                'district_salary' => $request->input('district_salary'),
+                'State_salary' => $request->input('State_salary'),
                 'employer_category' => $request->input('employer_category'),
                 'Salary_1' => $request->input('Salary_1'),
                 'perquisites_value' => $request->input('perquisites_value'),
@@ -209,6 +244,25 @@ class ClientController extends Controller
         } else {
             return response()->json(['error' => 'User not authenticated'], 403);
         }
+    }
+
+    public function getLocationDetails($pincode)
+    {
+        if (Auth::id()) {
+            $location = Pincode::where('Pincode', $pincode)->first();
+
+            if ($location) {
+                return response()->json([
+                    'state' => $location->StateName,
+                    'district' => $location->District
+                ]);
+            } else {
+                return response()->json(['message' => 'Pincode not found'], 404);
+            }
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 403);
+        }
+
     }
 
 }

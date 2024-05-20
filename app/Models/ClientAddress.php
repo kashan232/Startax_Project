@@ -19,7 +19,7 @@ class ClientAddress extends Model
         'road_street',
         'pin_code',
         'Area_locality',
-        'town_city',
+        'district',
         'State',
         'Country',
         'mobile_phone',
