@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\ClientAddress;
 use App\Models\ClientBank;
 use App\Models\ClientSalary;
+use App\Models\IncomeType;
 use App\Models\PinCode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -53,38 +54,38 @@ class ClientController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             $client_id = $id;
-            $clients_details = Client::FindOrFail($id);
+            $clients_details = Client::findOrFail($id);
             $ClientAddreses = ClientAddress::where('client_id', '=', $client_id)->first();
 
             // Retrieve all client banks
             $ClientBanks = ClientBank::where('client_id', '=', $client_id)->get();
-
-            $bankData = []; // Default value set
+            $bankData = [];
 
             foreach ($ClientBanks as $bank) {
-                // Decode each bank's data and include the bank ID
                 $data = json_decode($bank->bank_data, true);
-                $data['id'] = $bank->id; // Include the bank ID
+                $data['id'] = $bank->id;
                 $bankData[] = $data;
             }
 
-             // Retrieve all client salaries
+            // Retrieve all client salaries
             $ClientSalaries = ClientSalary::where('client_id', '=', $client_id)->get();
-            $salaryData = []; // Default value set
-            
+            $salaryData = [];
+
             foreach ($ClientSalaries as $salary) {
-                // Decode each salary's data and include the salary ID
                 $data = json_decode($salary->salary_data, true);
-                $data['id'] = $salary->id; // Include the salary ID
+                $data['id'] = $salary->id;
                 $salaryData[] = $data;
             }
-            
 
+            // Retrieve selected income types for the client
+            $selectedIncomeTypes = IncomeType::where('client_id', '=', $client_id)->pluck('income_type')->toArray();
+            // dd($selectedIncomeTypes);
             return view('User.client.client_detail', [
                 'clients_details' => $clients_details,
                 'ClientAddreses' => $ClientAddreses,
-                'bankData' => $bankData, // Pass the JSON data to the view
-                'salaryData' => $salaryData, // Pass the salary JSON data to the view
+                'bankData' => $bankData,
+                'salaryData' => $salaryData,
+                'selectedIncomeTypes' => $selectedIncomeTypes,
             ]);
         } else {
             return redirect()->back();
@@ -263,7 +264,6 @@ class ClientController extends Controller
         } else {
             return response()->json(['error' => 'User not authenticated'], 403);
         }
-
     }
 
     public function getBankDetails($ifsc)
@@ -280,7 +280,47 @@ class ClientController extends Controller
         } else {
             return response()->json(['error' => 'User not authenticated'], 403);
         }
-
     }
 
+    public function saveIncomeTypes(Request $request)
+    {
+        if (Auth::id()) {
+            $user = Auth::user();
+            $userId = Auth::id();
+            $selectedTypes = $request->input('income_type');
+            $client_id = $request->input('client_id');
+
+            // Fetch existing income types for the client
+            $existingIncomeTypes = IncomeType::where('client_id', $client_id)->pluck('income_type')->toArray();
+
+            // Convert selected types to an associative array for easier lookup
+            $selectedTypesAssoc = array_flip($selectedTypes);
+
+            // Iterate over existing income types to update or delete them
+            foreach ($existingIncomeTypes as $existingType) {
+                if (isset($selectedTypesAssoc[$existingType])) {
+                    // If the type is still selected, remove it from the associative array (indicates it's already in DB)
+                    unset($selectedTypesAssoc[$existingType]);
+                } else {
+                    // If the type is no longer selected, delete the record
+                    IncomeType::where('client_id', $client_id)
+                        ->where('income_type', $existingType)
+                        ->delete();
+                }
+            }
+
+            // The remaining items in $selectedTypesAssoc are new and need to be inserted
+            foreach ($selectedTypesAssoc as $type => $value) {
+                IncomeType::create([
+                    'admin_or_user_id' => $userId,
+                    'client_id' => $client_id,
+                    'income_type' => $type
+                ]);
+            }
+
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 403);
+        }
+    }
 }

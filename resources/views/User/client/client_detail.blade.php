@@ -1,5 +1,74 @@
 @include('User.include.header_include')
+<style>
+  /* Modal container */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+  }
 
+  /* Modal content */
+  .modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 60%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Close button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* Form and button styling */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  form label {
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  form .btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  form .btn:hover {
+    background-color: #45a049;
+  }
+</style>
 <div class="app">
   <!-- header sections Start -->
   @include('User.include.navbar_include')
@@ -11,6 +80,24 @@
     @include('User.include.sidebar_include')
 
     <!-- SIde Bar ENd  -->
+    <!-- The Modal -->
+    <div id="incomeTypeModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Select Income Types</h2>
+        <form id="incomeTypeForm">
+          <input type="hidden" name="client_id" value="{{ $clients_details->id }}">
+          <label><input type="checkbox" name="income_type[]" value="salary"> Salary</label><br>
+          <label><input type="checkbox" name="income_type[]" value="business"> Business</label><br>
+          <label><input type="checkbox" name="income_type[]" value="house_property"> House Property</label><br>
+          <label><input type="checkbox" name="income_type[]" value="capital_gain"> Capital Gain</label><br>
+          <label><input type="checkbox" name="income_type[]" value="other_income"> Other Income</label><br>
+          <label><input type="checkbox" name="income_type[]" value="VDAincome"> VDA Income</label><br>
+          <label><input type="checkbox" name="income_type[]" value="exempt_income"> Exempt Income</label><br>
+          <button type="submit" class="btn">Save</button>
+        </form>
+      </div>
+    </div>
 
     <div class="main-container">
       <!-- COnetnt_wrpper Sec Start -->
@@ -34,7 +121,7 @@
               <input type="text" placeholder="Search Here" />
             </div>
             <div class="button_data">
-              <button>Change Income Type</button>
+              <button id="changeIncomeTypeBtn">Change Income Type</button>
             </div>
 
             <div class="yearSelect">
@@ -132,12 +219,48 @@
                 </div>
               </div>
 
+
               <div class="p-tab-cntnt inner_tabs_collec">
                 <div class="p-tab-c1">
                   <span>02 Income</span>
 
+                  <?php
+                  $allIncomeTypes = [
+                    'salary' => 'Salary',
+                    'business' => 'Business',
+                    'house_property' => 'House Property',
+                    'capital_gain' => 'Capital Gain',
+                    'other_income' => 'Other Income',
+                    'VDAincome' => 'VDA Income',
+                    'exempt_income' => 'Exempt Income'
+                  ];
+
+                  $iconClasses = [
+                    'salary' => 'fas fa-list-ol',
+                    'business' => 'fas fa-handshake',
+                    'house_property' => 'fas fa-home',
+                    'capital_gain' => 'fab fa-creative-commons-share',
+                    'other_income' => 'far fa-window-restore',
+                    'VDAincome' => 'far fa-window-restore',
+                    'exempt_income' => 'far fa-window-restore'
+                  ];
+
+                  $selectedIncomeTypes = empty($selectedIncomeTypes) ? array_keys($allIncomeTypes) : $selectedIncomeTypes;
+                  ?>
+
                   <div class="inerr_taabs-tab-btns">
-                    <ul>
+                  <ul>
+                      <?php foreach ($selectedIncomeTypes as $index => $incomeType): ?>
+                          <?php if (array_key_exists($incomeType, $allIncomeTypes)): ?>
+                              <li class="<?= $index == 0 ? 'active' : '' ?>">
+                                  <span><i class="<?= $iconClasses[$incomeType] ?>"></i></span>
+                                  <span><?= $allIncomeTypes[$incomeType] ?></span>
+                              </li>
+                          <?php endif; ?>
+                      <?php endforeach; ?>
+                  </ul>
+
+                    <!-- <ul>
                       <li class="active">
                         <span><i class="fas fa-list-ol"></i></span>
                         <span>Salary</span>
@@ -166,7 +289,7 @@
                         <span><i class="far fa-window-restore"></i></span>
                         <span>Exempt Income</span>
                       </li>
-                    </ul>
+                    </ul> -->
                   </div>
 
                   <div class="inerr_taabs_content">
@@ -2233,22 +2356,80 @@
 </script>
 
 <script>
-function addMore() {
-  const formContainer = document.getElementById("formContainer");
-  const inputGroups = formContainer.querySelectorAll(".form_input_grp");
+  function addMore() {
+    const formContainer = document.getElementById("formContainer");
+    const inputGroups = formContainer.querySelectorAll(".form_input_grp");
 
-  inputGroups.forEach((group) => {
-    const lastInput = group.querySelector(".append1:last-of-type");
+    inputGroups.forEach((group) => {
+      const lastInput = group.querySelector(".append1:last-of-type");
 
-    if (lastInput) {
-      const newInput = lastInput.cloneNode(true);
-      newInput.value = "";
-      group.appendChild(newInput);
-    }
-  });
-}
+      if (lastInput) {
+        const newInput = lastInput.cloneNode(true);
+        newInput.value = "";
+        group.appendChild(newInput);
+      }
+    });
+  }
 </script>
 
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    // Get the modal
+    var modal = document.getElementById("incomeTypeModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("changeIncomeTypeBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Handle form submission
+    document.getElementById('incomeTypeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+
+      fetch('/save-income-types', {
+          method: 'POST',
+          headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+          },
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Income types saved successfully!');
+            modal.style.display = "none";
+            // Optionally, update the UI with the selected income types
+          } else {
+            alert('Failed to save income types.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    });
+  });
+</script>
 </body>
 
 </html>

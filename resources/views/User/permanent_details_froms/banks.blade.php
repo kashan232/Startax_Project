@@ -7,7 +7,7 @@
     <div class="form_input_grp">
       <input type="hidden" name="client_id" value="{{ $clients_details->id }}">
       <label>IFSC Code</label>
-      <input type="text" name="bank_ifsc_code" class="ifsc_code" placeholder="Enter Your IFSC Code" />
+      <input type="text" name="bank_isfc_code" class="ifsc_code" placeholder="Enter Your IFSC Code" />
     </div>
 
     <div class="form_input_grp">

@@ -35,6 +35,7 @@ Route::get('/delete-store-client-income-salary', [ClientController::class, 'dele
 
 Route::get('/get-location-details/{pincode}', [ClientController::class, 'getLocationDetails']);
 Route::get('/get-bank-details/{ifsc}', [ClientController::class, 'getBankDetails']);
+Route::post('/save-income-types', [ClientController::class, 'saveIncomeTypes']);
 
 
 // Income routes
