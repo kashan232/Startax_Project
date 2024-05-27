@@ -1,4 +1,4 @@
-  <form action="{{ route('store-client-salary') }}" method="post">
+  <form id="salary_form">
     @csrf
     <div class="form_heading">
       <h5>Employer Wise Salary</h5>
@@ -39,7 +39,7 @@
 
       <div class="form_input_grp">
         <label>Pincode</label>
-        <input type="number" name="pin_code_salry"  placeholder="Enter Your Pincode" />
+        <input type="number" name="pin_code_salry" placeholder="Enter Your Pincode" />
       </div>
 
       <div class="form_input_grp">
@@ -117,7 +117,7 @@
       </div>
 
 
-     
+
 
     </div>
 
@@ -326,7 +326,7 @@
       </div>
     </div>
 
-    <input class="submit_btton" type="submit" value="Submit" />
+    <input id="submit_salary" class="submit_btton" type="submit" value="Submit" />
   </form>
 
 
@@ -361,14 +361,15 @@
       }
     });
   </script>
+
   <script>
     $(document).ready(function() {
-      $('form').on('submit', function(e) {
-        e.preventDefault();
-        var formData = $(this).serialize(); // Form data ko serialize karein
+      $('#submit_salary').click(function(event) {
+        event.preventDefault();
+        var formData = $('#salary_form').serialize();
         $.ajax({
-          url: $(this).attr('action'),
-          type: $(this).attr('method'),
+          url: "{{ route('store-client-salary') }}",
+          type: 'get',
           data: formData,
           success: function(response) {
             // Success message ko display karein ya kuch aur karein

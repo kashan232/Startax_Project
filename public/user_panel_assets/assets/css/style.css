@@ -952,9 +952,24 @@ body.light-mode .video-bg:before {
   transform: scale(1.02);
   background-color: var(--theme-bg-color);
 }
+.form_grid.main8-col {
+  grid-template-columns: repeat(7, 1fr) max-content;
+}
+.ip_col-2 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  align-items: center !important;
+  gap: 30px;
+}
+.ip-col-3 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  gap: 30px;
+  align-items: center !important;
+}
 
 .form_grid.main5-col {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr max-content;
+  grid-template-columns: repeat(8,1fr);
   align-items: center;
 }
 .cancel {

@@ -1,7 +1,7 @@
 <div class="for-heading">
   <h5>Address</h5>
 </div>
-<form id="editClientaddressForm" action="{{ route('store-client-address') }}" method="post">
+<form id="editClientaddressForm">
   @csrf
   <div class="form_grid">
     <div class="form_input_grp">
@@ -150,7 +150,7 @@
       <input type="email" name="email_address_secondary" placeholder="Enter Your Email Address" value="{{ $ClientAddreses->email_address_secondary }}" />
     </div>
   </div>
-  <input class="submit_btton" type="submit" value="Submit" />
+  <input id="Client_address_form" class="submit_btton" type="submit" value="Submit" />
 </form>
 
 <script>

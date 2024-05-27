@@ -1,7 +1,7 @@
 <div class="for-heading">
   <h5>Bank Detail Type</h5>
 </div>
-<form action="{{ route('store-client-bank') }}" method="post">
+<form id="createbankform">
   @csrf
   <div class="form_grid">
     <div class="form_input_grp">
@@ -34,11 +34,10 @@
   </div>
 
   <div style="display: flex;">
-    <input class="submit_btton" type="submit" value="Save" />
+    <input id="submit_client_bank_form" class="submit_btton" type="submit" value="Save" />
   </div>
 </form>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   function initializeIfscLookup(ifscClass, bankNameClass) {
     $(document).on('input', ifscClass, function() {
@@ -71,12 +70,12 @@
 </script>
 <script>
   $(document).ready(function() {
-    $('form').on('submit', function(e) {
-      e.preventDefault();
-      var formData = $(this).serialize(); // Form data ko serialize karein
+    $('#submit_client_bank_form').click(function(event) {
+      event.preventDefault();
+      var formData = $('#createbankform').serialize();
       $.ajax({
-        url: $(this).attr('action'),
-        type: $(this).attr('method'),
+        url: "{{ route('store-client-bank') }}",
+        type: 'get',
         data: formData,
         success: function(response) {
           // Success message ko display karein ya kuch aur karein

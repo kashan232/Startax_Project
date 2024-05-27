@@ -7,6 +7,8 @@ use App\Models\Client;
 use App\Models\ClientAddress;
 use App\Models\ClientBank;
 use App\Models\ClientSalary;
+use App\Models\ExemptIncome;
+use App\Models\HouseProperty;
 use App\Models\IncomeType;
 use App\Models\PinCode;
 use Carbon\Carbon;
@@ -79,13 +81,25 @@ class ClientController extends Controller
 
             // Retrieve selected income types for the client
             $selectedIncomeTypes = IncomeType::where('client_id', '=', $client_id)->pluck('income_type')->toArray();
-            // dd($selectedIncomeTypes);
+
+            // Retrieve all client salaries
+            $HouseProperties = HouseProperty::where('client_id', '=', $client_id)->get();
+            $HousePropertyData = [];
+
+            foreach ($HouseProperties as $HouseProperty) {
+                $data = json_decode($HouseProperty->house_property_data, true);
+                $data['id'] = $HouseProperty->id;
+                $HousePropertyData[] = $data;
+            }
+
+            // dd($HousePropertyData);
             return view('User.client.client_detail', [
                 'clients_details' => $clients_details,
                 'ClientAddreses' => $ClientAddreses,
                 'bankData' => $bankData,
                 'salaryData' => $salaryData,
                 'selectedIncomeTypes' => $selectedIncomeTypes,
+                'HousePropertyData' => $HousePropertyData,
             ]);
         } else {
             return redirect()->back();
@@ -213,6 +227,24 @@ class ClientController extends Controller
         }
     }
 
+
+    public function delete_store_house_property(Request $request)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $id = $request->input('id');
+            $HouseProperty = HouseProperty::find($id);
+            if ($HouseProperty && $HouseProperty->admin_or_user_id == $userId) {
+                $HouseProperty->delete();
+                return response()->json(['success' => 'House property details deleted successfully']);
+            } else {
+                return response()->json(['error' => 'Unauthorized or Salary details not found'], 403);
+            }
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 403);
+        }
+    }
+
     public function store_client_salary(Request $request)
     {
         if (Auth::id()) {
@@ -243,6 +275,52 @@ class ClientController extends Controller
             ]);
 
             return response()->json(['success' => 'Client Salary details Added Successfully']);
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 403);
+        }
+    }
+
+    public function store_house_property(Request $request)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            // dd($request);
+            $client_id = $request->input('client_id');
+            $HousePropertiesdata = [
+                'occupancyOfHouse' => $request->input('occupancyOfHouse'),
+                'address.flatDoorBlockNumber' => $request->input('address.flatDoorBlockNumber'),
+                'address.premiseBuildingVillageName' => $request->input('address.premiseBuildingVillageName'),
+                'address.roadStreetPostOffice' => $request->input('address.roadStreetPostOffice'),
+                'address.pinCodeOrZipCode' => $request->input('address.pinCodeOrZipCode'),
+                'address.areaLocality' => $request->input('address.areaLocality'),
+                'address.townCityDistrict' => $request->input('address.townCityDistrict'),
+                'address_stateInIndia' => $request->input('address_stateInIndia'),
+                'address.country' => $request->input('address.country'),
+                'ownerOfProperty' => $request->input('ownerOfProperty'),
+                'name' => $request->input('name'),
+                'pan' => $request->input('pan'),
+                'percentage' => $request->input('percentage'),
+                'coownerBag.listCoowner[0].name' => $request->input('coownerBag.listCoowner[0].name'),
+                'coownerBag.listCoowner[0].pan' => $request->input('coownerBag.listCoowner[0].pan'),
+                'coownerBag.listCoowner[0].percentSharePropertyField' => $request->input('coownerBag.listCoowner[0].percentSharePropertyField'),
+                'financialYearOfCompletion' => $request->input('financialYearOfCompletion'),
+                'totalInterestPaidDuringPreConstruction' => $request->input('totalInterestPaidDuringPreConstruction'),
+                'totalInterestPaidDuringPreConstructionAmount' => $request->input('totalInterestPaidDuringPreConstructionAmount'),
+                'interestPaidForFinancialYear' => $request->input('interestPaidForFinancialYear'),
+                'interestPaidForFinancialYearAmount' => $request->input('interestPaidForFinancialYearAmount'),
+                'total_deduction' => $request->input('total_deduction'),
+                'total_deductionAmount' => $request->input('total_deductionAmount'),
+
+            ];
+
+            // New bank data create karein
+            $HouseProperties = HouseProperty::create([
+                'admin_or_user_id' => $userId,
+                'client_id' => $client_id,
+                'house_property_data' => json_encode($HousePropertiesdata)
+            ]);
+
+            return response()->json(['success' => 'House Property details Added Successfully']);
         } else {
             return response()->json(['error' => 'User not authenticated'], 403);
         }
@@ -319,6 +397,45 @@ class ClientController extends Controller
             }
 
             return response()->json(['success' => true]);
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 403);
+        }
+    }
+    public function store_client_exempt_income(Request $request)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $client_id = $request->input('client_id');
+
+            // Retrieving array inputs
+            $properties = $request->input('properties', []);
+            $pinCodes = $request->input('PinCode', []);
+            $measurementOfLands = $request->input('MeasurementOfLand', []);
+            $agriLandOwnedFlags = $request->input('AgriLandOwnedFlag', []);
+            $agriLandIrrigatedFlags = $request->input('AgriLandIrrigatedFlag', []);
+
+            // Creating the agriData array
+            $agriData = [
+                'GrossAgriRecpt' => $request->input('GrossAgriRecpt'),
+                'ExpIncAgri' => $request->input('ExpIncAgri'),
+                'UnabAgriLossPrev8' => $request->input('UnabAgriLossPrev8'),
+                'AgriIncRule7and8' => $request->input('AgriIncRule7and8'),
+                'NetAgriIncOrOthrIncRule7' => $request->input('NetAgriIncOrOthrIncRule7'),
+                'properties' => $properties,
+                'PinCode' => $pinCodes,
+                'MeasurementOfLand' => $measurementOfLands,
+                'AgriLandOwnedFlag' => $agriLandOwnedFlags,
+                'AgriLandIrrigatedFlag' => $agriLandIrrigatedFlags,
+            ];
+
+            // Save data in database
+            $ClientExemptIncome = ExemptIncome::create([
+                'admin_or_user_id' => $userId,
+                'client_id' => $client_id,
+                'exept_income_data' => json_encode($agriData)
+            ]);
+
+            return response()->json(['success' => 'Client Exempt Income details Added Successfully']);
         } else {
             return response()->json(['error' => 'User not authenticated'], 403);
         }

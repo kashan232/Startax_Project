@@ -16,8 +16,8 @@
             <div class="content-section-title">Add Client</div>
           </div>
           <div class="Form_customer">
-          <form action="{{ route('store-client') }}" method="POST">
-            @csrf
+            <form id="add_client_form">
+              @csrf
               <div class="form_grid">
                 <div class="form_input_grp">
                   <label>Client Type *</label>
@@ -89,7 +89,7 @@
                   </select>
                 </div>
               </div>
-              <input class="submit_btton" type="submit" value="Submit" />
+              <input id="submit_client_form" class="submit_btton" type="submit" value="Submit" />
             </form>
           </div>
         </div>
@@ -101,6 +101,27 @@
 </div>
 @include('User.include.footer_include')
 
+<script>
+  $(document).ready(function() {
+    $('#submit_client_form').click(function(event) {
+      event.preventDefault();
+      var formData = $('#add_client_form').serialize();
+      $.ajax({
+        url: "{{ route('store-client') }}",
+        type: 'get',
+        data: formData,
+        success: function(response) {
+          console.log(response);
+          alert('Client Added successfully!');
+        },
+        error: function(xhr, status, error) {
+          console.error(xhr.responseText);
+          alert('Error: ' + xhr.responseText);
+        }
+      });
+    });
+  });
+</script>
 
 </body>
 

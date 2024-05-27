@@ -1,4 +1,4 @@
-<form id="editClientForm" action="{{ route('edit-client-basic-details') }}" method="post">
+<form id="editClientForm">
   @csrf
   <div class="form_grid">
     <div class="form_input_grp">
@@ -49,5 +49,5 @@
       </select>
     </div>
   </div>
-  <input class="submit_btton" type="submit" value="Submit" />
+  <input id="submit_client_details_form" class="submit_btton" type="submit" value="Submit" />
 </form>
