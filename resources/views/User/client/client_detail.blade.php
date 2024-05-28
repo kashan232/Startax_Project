@@ -86,14 +86,14 @@
         <span class="close">&times;</span>
         <h2>Select Income Types</h2>
         <form id="incomeTypeForm">
-          <input type="hidden" name="client_id" value="{{ $clients_details->id }}">
-          <label><input type="checkbox" name="income_type[]" value="salary"> Salary</label><br>
-          <label><input type="checkbox" name="income_type[]" value="business"> Business</label><br>
-          <label><input type="checkbox" name="income_type[]" value="house_property"> House Property</label><br>
-          <label><input type="checkbox" name="income_type[]" value="capital_gain"> Capital Gain</label><br>
-          <label><input type="checkbox" name="income_type[]" value="other_income"> Other Income</label><br>
-          <label><input type="checkbox" name="income_type[]" value="VDAincome"> VDA Income</label><br>
-          <label><input type="checkbox" name="income_type[]" value="exempt_income"> Exempt Income</label><br>
+        <input type="hidden" name="client_id" value="{{ $clients_details->id }}">
+        @foreach (['salary', 'business', 'house_property', 'capital_gain', 'other_income', 'VDAincome', 'exempt_income'] as $incomeType)
+          <label>
+            <input type="checkbox" name="income_type[]" value="{{ $incomeType }}" 
+            @if (in_array($incomeType, $selectedIncomeTypes)) checked @endif> 
+            {{ ucfirst(str_replace('_', ' ', $incomeType)) }}
+          </label><br>
+        @endforeach
           <button type="submit" class="btn">Save</button>
         </form>
       </div>
@@ -1604,9 +1604,9 @@
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            alert('Income types saved successfully!');
             modal.style.display = "none";
-            // Optionally, update the UI with the selected income types
+            // Refresh the page
+            window.location.reload();
           } else {
             alert('Failed to save income types.');
           }
