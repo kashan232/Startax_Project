@@ -5,9 +5,17 @@
   @csrf
   <div class="form_grid">
     <div class="form_input_grp">
+      <label>Aadhaar Card Number</label>
+      <input type="text" name="Aadhaar_card_number" placeholder="Enter Your Aadhaar Card Number" />
+    </div>
+    <div class="form_input_grp">
+      <label> Aadhaar Enrollment Number</label>
+      <input type="text" name="Aadhaar_enrollment_number" placeholder="Enter Your Aadhaar Enrollment Number" />
+    </div>
+    <div class="form_input_grp">
       <input type="hidden" name="client_id" value="{{ $clients_details->id }}">
       <label>IFSC Code</label>
-      <input type="text" name="bank_isfc_code" class="ifsc_code" placeholder="Enter Your IFSC Code" />
+      <input type="text" name="bank_isfc_code" placeholder="Enter Your IFSC Code" />
     </div>
 
     <div class="form_input_grp">
@@ -17,7 +25,7 @@
 
     <div class="form_input_grp">
       <label>Bank Name</label>
-      <input type="text" name="bank_name" class="bank_name" placeholder="Bank Name" readonly />
+      <input type="text" name="bank_name"  placeholder="Bank Name" readonly />
     </div>
     <div class="form_input_grp">
       <label>Account Type</label>

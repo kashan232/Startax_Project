@@ -86,35 +86,27 @@
         <span class="close">&times;</span>
         <h2>Select Income Types</h2>
         <form id="incomeTypeForm">
-        <input type="hidden" name="client_id" value="{{ $clients_details->id }}">
-        @foreach (['salary', 'business', 'house_property', 'capital_gain', 'other_income', 'VDAincome', 'exempt_income'] as $incomeType)
+          <input type="hidden" name="client_id" value="{{ $clients_details->id }}">
+          @foreach (['salary', 'business', 'house_property', 'capital_gain', 'other_income', 'VDAincome', 'exempt_income'] as $incomeType)
           <label>
-            <input type="checkbox" name="income_type[]" value="{{ $incomeType }}" 
-            @if (in_array($incomeType, $selectedIncomeTypes)) checked @endif> 
+            <input type="checkbox" name="income_type[]" value="{{ $incomeType }}" @if (in_array($incomeType, $selectedIncomeTypes)) checked @endif>
             {{ ucfirst(str_replace('_', ' ', $incomeType)) }}
           </label><br>
-        @endforeach
+          @endforeach
           <button type="submit" class="btn">Save</button>
         </form>
       </div>
     </div>
 
     <div class="main-container">
-      <!-- COnetnt_wrpper Sec Start -->
-      <!-- COnetnt_wrpper header Start -->
-      <!-- <div class="main-header">
-            <a class="menu-link-main" href="#">All Menu</a>
-            <div class="header-menu">
-              <a class="main-header-link is-active" href="#">Links Here</a>
-              <a class="main-header-link" href="#">Links Here</a>
-              <a class="main-header-link" href="#">Links Here</a>
-            </div>
-          </div> -->
-      <!-- COnetnt_wrpper header Start -->
       <div class="content-wrapper">
         <div class="content-section">
           <div class="heading_button">
-            <div class="content-section-title">{{ $clients_details->first_name}} {{ $clients_details->middel_name}} {{ $clients_details->last_name}}</div>
+            <div class="content-section-title">
+              <a href="{{ route('client-detail', ['id' => $clients_details->id]) }}" style="text-decoration: none; color:#999ba5;">
+                {{ $clients_details->personal_details['first_name'] }} {{ $clients_details->personal_details['middel_name'] }} {{ $clients_details->personal_details['last_name'] }}
+              </a>
+            </div>
             <!-- <a href="#" class="dlect_btn">Year 2024</a> -->
 
             <div class="serch_bar">
@@ -1436,7 +1428,9 @@
                     <img src="assets/images/avatar.png" alt="" />
                   </div>
                   <div class="avatar_conten">
-                    <h6>{{ $clients_details->first_name}} {{ $clients_details->middel_name}} {{ $clients_details->last_name}}</h6>
+                    <h6>
+                      {{ $clients_details->personal_details['first_name'] }} {{ $clients_details->personal_details['middel_name'] }} {{ $clients_details->personal_details['last_name'] }}
+                    </h6>
                     <span>
                       <a href="#"><i class="fa-solid fa-envelope"></i>Email@gamil.com</a>
                     </span>
@@ -1479,6 +1473,7 @@
 <script>
   $(document).ready(function() {
     $('#submit_client_details_form').click(function(event) {
+      // alert('ok');
       event.preventDefault();
       var formData = $('#editClientForm').serialize();
       $.ajax({
@@ -1508,11 +1503,9 @@
         type: 'get',
         data: formData,
         success: function(response) {
-          // Success message ko display karein ya kuch aur karein
           console.log(response);
         },
         error: function(xhr, status, error) {
-          // Error handling
           console.error(xhr.responseText);
         }
       });

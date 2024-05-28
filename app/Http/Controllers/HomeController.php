@@ -18,14 +18,16 @@ class HomeController extends Controller
             if ($usertype == 'user') {
                 $userId = Auth::id();
                 $clients = Client::where('admin_or_user_id', '=', $userId)->get();
+
+                // Decode the personal_details JSON for each client
+                foreach ($clients as $client) {
+                    $client->personal_details = json_decode($client->personal_details, true);
+                }
                 return view('user.user_dashboard', [
                     'clients' => $clients,
                 ]);
-
             } else if ($usertype == 'admin') {
-
                 return view('admin.admin_dashboard');
-
             } else {
                 return redirect()->back();
             }
@@ -45,6 +47,5 @@ class HomeController extends Controller
         } else {
             abort(401);
         }
-
     }
 }

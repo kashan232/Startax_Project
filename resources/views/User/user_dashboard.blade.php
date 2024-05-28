@@ -28,45 +28,45 @@
 
           <div class="tabel_main">
             <div class="table-responsive text-nowrap" style="padding: 10px 10px 10px 0">
-            <table id="userTable">
-                  <thead>
-                    <tr>
-                      <th>SNO#</th>
-                      <th>Name</th>
-                      <th>Client Type</th>
-                      <th>DOB / DOI</th>
-                      <th>PAN</th>
-                      <th>AY</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+              <table id="userTable">
+                <thead>
+                  <tr>
+                    <th>SNO#</th>
+                    <th>Name</th>
+                    <th>Client Type</th>
+                    <th>DOB / DOI</th>
+                    <th>PAN</th>
+                    <th>AY</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
                   @foreach ($clients as $client)
                   <tr onclick="window.location='{{ route('client-detail', ['id' => $client->id]) }}';" style="cursor:pointer;">
-                      <td>{{ $loop->iteration }}</td>
-                      <td>{{ $client->first_name }} {{ $client->middel_name }} {{ $client->last_name }}</td>
-                      <td>{{ $client->client_type  }}</td>
-                      <td>{{ $client->DOB }}</td>
-                      <td>{{ $client->PAN_numbr }}</td>
-                      <td>{{ $client->AY }}</td>
-                      <td>
-                        <div class="button-wrapper">
-                          <div class="menu">
-                            <button class="dropdown">
-                              <ul>
-                                <li><a href="#">Go to Discover</a></li>
-                                <li><a href="#">Learn more</a></li>
-                                <li><a href="#">Delect</a></li>
-                              </ul>
-                            </button>
-                          </div>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $client->personal_details['first_name'] }} {{ $client->personal_details['middel_name'] }} {{ $client->personal_details['last_name'] }}</td>
+                    <td>{{ $client->personal_details['client_type'] }}</td>
+                    <td>{{ $client->personal_details['DOB'] }}</td>
+                    <td>{{ $client->personal_details['PAN_numbr'] }}</td>
+                    <td>{{ $client->personal_details['AY'] }}</td>
+                    <td>
+                      <div class="button-wrapper">
+                        <div class="menu">
+                          <button class="dropdown">
+                            <ul>
+                              <li><a href="#">Go to Discover</a></li>
+                              <li><a href="#">Learn more</a></li>
+                              <li><a href="#">Delete</a></li>
+                            </ul>
+                          </button>
                         </div>
-                      </td>
-                    </tr>
-                    @endforeach
-                    
-                  </tbody>
-                </table>
+                      </div>
+                    </td>
+                  </tr>
+                  @endforeach
+
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

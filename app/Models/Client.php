@@ -18,15 +18,7 @@ class Client extends Model
     
     protected $fillable = [
         'admin_or_user_id',
-        'client_type',
-        'AY',
-        'first_name',
-        'middel_name',
-        'last_name',
-        'father_name',
-        'DOB',
-        'PAN_numbr',
-        'gender',
-        'marital_status'
+        'personal_details',
+        'address_details'
     ];
 }
