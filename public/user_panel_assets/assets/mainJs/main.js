@@ -253,7 +253,7 @@ toggleButton.addEventListener("click", () => {
         dynamicInputGrp.classList.add("form_input_grp", "dynamic-input");
 
         const dynamicLabel = document.createElement("label");
-        dynamicLabel.textContent = `Additional Information for ${selectedOption.text}`;
+        dynamicLabel.textContent = `${selectedOption.text}`;
 
         const dynamicInput = document.createElement("input");
         dynamicInput.type = "text";

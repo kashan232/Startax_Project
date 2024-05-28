@@ -172,6 +172,7 @@
                   <option value="advanceof_salary">Advance of Salary</option>
                   <option value="annuity">Annuity / Commuted Pension</option>
                   <option value="gratuity_received">Gratuity Received</option>
+                  <option value="others">others</option>
                 </select>
               </div>
             </div>
@@ -210,6 +211,7 @@
                   <option value="holiday_expenses">Holiday Expenses</option>
                   <option value="free_meals">free_meals</option>
                   <option value="gifts">gifts</option>
+                  <option value="others">others</option>
                 </select>
               </div>
             </div>
@@ -231,6 +233,7 @@
                   <option value="compensation_received">Compensation received from Employer due to termination of his employment</option>
                   <option value="payment_received">Payment Received from employer under Key-man Insurance Policies</option>
                   <option value="any_amount_received">Any Amount received before joining or after cessation of employment</option>
+                  <option value="others">others</option>
                 </select>
               </div>
             </div>
