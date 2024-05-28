@@ -11,19 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($bankData as $bank)
-        <tr style="cursor:pointer;" class="odd">
-          <td>{{ $bank['IFSC_Code'] }}</td>
-          <td>{{ $bank['Bank_Account_No'] }}</td>
-          <td>{{ $bank['Bank_Name'] }}</td>
-          <td>{{ $bank['Account_Type'] }}</td>
-          <td>
-            <div class="button-wrapper">
-              <button type="button" class="btn btn-danger btn-sm delete-bank" data-id="{{ $bank['id'] }}"><i class="fa-solid fa-trash"></i></button>
-            </div>
-          </td>
-        </tr>
-        @endforeach
+
       </tbody>
     </table>
   </div>

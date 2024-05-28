@@ -7,6 +7,7 @@
 
     <!-- Links -->
     <link rel="stylesheet" href="/user_panel_assets/assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <!-- Links -->
     <!-- Bootstrap CSS -->
     <link

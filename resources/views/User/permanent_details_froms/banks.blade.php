@@ -6,37 +6,38 @@
   <div class="form_grid">
     <div class="form_input_grp">
       <label>Aadhaar Card Number</label>
-      <input type="text" name="Aadhaar_card_number" placeholder="Enter Your Aadhaar Card Number" />
+      <input type="text" name="Aadhaar_card_number" placeholder="Enter Your Aadhaar Card Number" value="{{ $client->bank_details['Aadhaar_card_number'] ?? '' }}" />
     </div>
     <div class="form_input_grp">
       <label> Aadhaar Enrollment Number</label>
-      <input type="text" name="Aadhaar_enrollment_number" placeholder="Enter Your Aadhaar Enrollment Number" />
+      <input type="text" name="Aadhaar_enrollment_number" placeholder="Enter Your Aadhaar Enrollment Number" value="{{ $client->bank_details['Aadhaar_enrollment_number'] ?? '' }}" />
     </div>
     <div class="form_input_grp">
       <input type="hidden" name="client_id" value="{{ $clients_details->id }}">
       <label>IFSC Code</label>
-      <input type="text" name="bank_isfc_code" placeholder="Enter Your IFSC Code" />
+      <input type="text" name="bank_isfc_code" placeholder="Enter Your IFSC Code" value="{{ $client->bank_details['IFSC_Code'] ?? '' }}" class="ifsc_code" />
     </div>
 
     <div class="form_input_grp">
       <label>Bank Account No</label>
-      <input type="number" name="bank_acount_no" placeholder="Enter Your Bank Account No" />
+      <input type="number" name="bank_acount_no" placeholder="Enter Your Bank Account No" value="{{ $client->bank_details['Bank_Account_No'] ?? '' }}" />
     </div>
 
     <div class="form_input_grp">
       <label>Bank Name</label>
-      <input type="text" name="bank_name"  placeholder="Bank Name" readonly />
+      <input type="text" name="bank_name" class="bankNameClass" placeholder="Bank Name" readonly value="{{ $client->bank_details['Bank_Name'] ?? '' }}" />
     </div>
+
     <div class="form_input_grp">
       <label>Account Type</label>
-      <select name="bank_acount_type" class="form-control" id="">
+      <select name="bank_acount_type" class="form-control">
         <option>Select Option</option>
-        <option value="SB">SB</option>
-        <option value="CA">CA</option>
-        <option value="CC">CC</option>
-        <option value="OD">OD</option>
-        <option value="NRO">NRO</option>
-        <option value="OTH">OTH</option>
+        <option value="SB" {{ isset($client->bank_details['Account_Type']) && $client->bank_details['Account_Type'] == 'SB' ? 'selected' : '' }}>SB</option>
+        <option value="CA" {{ isset($client->bank_details['Account_Type']) && $client->bank_details['Account_Type'] == 'CA' ? 'selected' : '' }}>CA</option>
+        <option value="CC" {{ isset($client->bank_details['Account_Type']) && $client->bank_details['Account_Type'] == 'CC' ? 'selected' : '' }}>CC</option>
+        <option value="OD" {{ isset($client->bank_details['Account_Type']) && $client->bank_details['Account_Type'] == 'OD' ? 'selected' : '' }}>OD</option>
+        <option value="NRO" {{ isset($client->bank_details['Account_Type']) && $client->bank_details['Account_Type'] == 'NRO' ? 'selected' : '' }}>NRO</option>
+        <option value="OTH" {{ isset($client->bank_details['Account_Type']) && $client->bank_details['Account_Type'] == 'OTH' ? 'selected' : '' }}>OTH</option>
       </select>
     </div>
   </div>
@@ -45,7 +46,6 @@
     <input id="submit_client_bank_form" class="submit_btton" type="submit" value="Save" />
   </div>
 </form>
-
 <script>
   function initializeIfscLookup(ifscClass, bankNameClass) {
     $(document).on('input', ifscClass, function() {
@@ -73,9 +73,11 @@
 
   // Initialize the IFSC lookup
   $(document).ready(function() {
-    initializeIfscLookup('.ifsc_code', '.bank_name');
+    initializeIfscLookup('.ifsc_code', '.bankNameClass');
   });
 </script>
+
+
 <script>
   $(document).ready(function() {
     $('#submit_client_bank_form').click(function(event) {

@@ -70,25 +70,24 @@ class ClientController extends Controller
                 $clients_details->personal_details = json_decode($clients_details->personal_details, true);
             }
             // dd($clients_details);
-            
-             // Fetch the client details
-             $ClientAddreses = Client::where('id', '=', $client_id)->first();
 
-             if ($ClientAddreses) {
-                 // Decode the personal_details JSON for the client
-                 $ClientAddreses->address_details = json_decode($ClientAddreses->address_details, true);
-             }
-            
+            // Fetch the client address
+            $ClientAddreses = Client::where('id', '=', $client_id)->first();
 
-            // Retrieve all client banks
-            $ClientBanks = ClientBank::where('client_id', '=', $client_id)->get();
-            $bankData = [];
-
-            foreach ($ClientBanks as $bank) {
-                $data = json_decode($bank->bank_data, true);
-                $data['id'] = $bank->id;
-                $bankData[] = $data;
+            if ($ClientAddreses) {
+                // Decode the personal_details JSON for the client
+                $ClientAddreses->address_details = json_decode($ClientAddreses->address_details, true);
             }
+            $client = Client::find($id);
+
+            if (!$client) {
+                return redirect()->back()->with('error', 'Client not found');
+            }
+
+            // Decode the bank_details JSON for the client
+            $bankData = json_decode($client->bank_details, true);
+
+
 
             // Retrieve all client salaries
             $ClientSalaries = ClientSalary::where('client_id', '=', $client_id)->get();
@@ -234,16 +233,31 @@ class ClientController extends Controller
                 'Account_Type' => $request->input('bank_acount_type')
             ];
 
-            // New bank data create karein
-            $clientBank = ClientBank::create([
+            // Fetch the existing client details
+            $client = Client::find($client_id);
+            if (!$client) {
+                return response()->json(['success' => false, 'message' => 'Client not found'], 404);
+            }
+
+            // Decode the existing bank details
+            $existingBankDetails = json_decode($client->bank_details, true);
+
+            // Merge with the updated details
+            $updatedBankDetails = array_merge($existingBankDetails ?? [], $bankData);
+
+            // Update the client details
+            $updateResult = $client->update([
                 'admin_or_user_id' => $userId,
-                'client_id' => $client_id,
-                'bank_data' => json_encode($bankData)
+                'bank_details' => json_encode($updatedBankDetails)
             ]);
 
-            return response()->json(['success' => 'Client Bank details Added Successfully']);
+            if ($updateResult) {
+                return response()->json(['success' => true, 'message' => 'Client bank details updated successfully']);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Failed to update client bank details']);
+            }
         } else {
-            return response()->json(['error' => 'User not authenticated'], 403);
+            return response()->json(['error' => 'User not authenticated'], 401);
         }
     }
 

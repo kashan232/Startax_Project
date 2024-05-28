@@ -948,6 +948,34 @@ body.light-mode .video-bg:before {
   transition: 0.3s ease;
   height: 100%;
 }
+.custom-toast {
+  background-color: red!important;
+  color: #fff!important;
+  border-radius: 8px;
+}
+.toast-custom {
+  background-color: #28a745!important;
+  color: white!important;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+ /* Customizing Toastr notification */
+ .toast-custom-success {
+  background-color: #28a745;
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+.toast-custom-error {
+  background-color: #f44336;
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
 .app-card:hover {
   transform: scale(1.02);
   background-color: var(--theme-bg-color);

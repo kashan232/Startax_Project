@@ -1481,11 +1481,41 @@
         type: 'get',
         data: formData,
         success: function(response) {
-          // Success message ko display karein ya kuch aur karein
+          // Display success toast notification
+          toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          };
+          toastr.success('Form submitted successfully!', 'Success', {
+            "toastClass": "toast-custom-success"
+          });
           console.log(response);
         },
         error: function(xhr, status, error) {
-          // Error handling
+          // Display error toast notification
+          toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          };
+          toastr.error('Error occurred!', 'Error', {
+            "toastClass": "toast-custom-error"
+          });
           console.error(xhr.responseText);
         }
       });
