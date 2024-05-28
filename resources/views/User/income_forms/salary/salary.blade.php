@@ -376,7 +376,8 @@
           data: formData,
           success: function(response) {
             // Success message ko display karein ya kuch aur karein
-            console.log(response);
+            // Refresh the page
+            window.location.reload();
           },
           error: function(xhr, status, error) {
             // Error handling
