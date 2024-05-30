@@ -78,15 +78,16 @@ class ClientController extends Controller
                 // Decode the personal_details JSON for the client
                 $ClientAddreses->address_details = json_decode($ClientAddreses->address_details, true);
             }
-            $client = Client::find($id);
 
-            if (!$client) {
-                return redirect()->back()->with('error', 'Client not found');
+            // Fetch the client details including bank details
+            $client = Client::find($client_id);
+
+            $bankDetails = [];
+            if ($client) {
+                // Decode the bank_details JSON for the client
+                $bankDetails = json_decode($client->bank_details, true);
+                $bankDetails['client_id'] = $client->id; // Include the client ID
             }
-
-            // Decode the bank_details JSON for the client
-            $bankData = json_decode($client->bank_details, true);
-
 
 
             // Retrieve all client salaries
@@ -116,7 +117,7 @@ class ClientController extends Controller
             return view('User.client.client_detail', [
                 'clients_details' => $clients_details,
                 'ClientAddreses' => $ClientAddreses,
-                'bankData' => $bankData,
+                'bankDetails' => $bankDetails,
                 'salaryData' => $salaryData,
                 'selectedIncomeTypes' => $selectedIncomeTypes,
                 'HousePropertyData' => $HousePropertyData,
@@ -348,51 +349,7 @@ class ClientController extends Controller
         }
     }
 
-    public function store_house_property(Request $request)
-    {
-        if (Auth::id()) {
-            $userId = Auth::id();
-            // dd($request);
-            $client_id = $request->input('client_id');
-            $HousePropertiesdata = [
-                'occupancyOfHouse' => $request->input('occupancyOfHouse'),
-                'address.flatDoorBlockNumber' => $request->input('address.flatDoorBlockNumber'),
-                'address.premiseBuildingVillageName' => $request->input('address.premiseBuildingVillageName'),
-                'address.roadStreetPostOffice' => $request->input('address.roadStreetPostOffice'),
-                'address.pinCodeOrZipCode' => $request->input('address.pinCodeOrZipCode'),
-                'address.areaLocality' => $request->input('address.areaLocality'),
-                'address.townCityDistrict' => $request->input('address.townCityDistrict'),
-                'address_stateInIndia' => $request->input('address_stateInIndia'),
-                'address.country' => $request->input('address.country'),
-                'ownerOfProperty' => $request->input('ownerOfProperty'),
-                'name' => $request->input('name'),
-                'pan' => $request->input('pan'),
-                'percentage' => $request->input('percentage'),
-                'coownerBag.listCoowner[0].name' => $request->input('coownerBag.listCoowner[0].name'),
-                'coownerBag.listCoowner[0].pan' => $request->input('coownerBag.listCoowner[0].pan'),
-                'coownerBag.listCoowner[0].percentSharePropertyField' => $request->input('coownerBag.listCoowner[0].percentSharePropertyField'),
-                'financialYearOfCompletion' => $request->input('financialYearOfCompletion'),
-                'totalInterestPaidDuringPreConstruction' => $request->input('totalInterestPaidDuringPreConstruction'),
-                'totalInterestPaidDuringPreConstructionAmount' => $request->input('totalInterestPaidDuringPreConstructionAmount'),
-                'interestPaidForFinancialYear' => $request->input('interestPaidForFinancialYear'),
-                'interestPaidForFinancialYearAmount' => $request->input('interestPaidForFinancialYearAmount'),
-                'total_deduction' => $request->input('total_deduction'),
-                'total_deductionAmount' => $request->input('total_deductionAmount'),
-
-            ];
-
-            // New bank data create karein
-            $HouseProperties = HouseProperty::create([
-                'admin_or_user_id' => $userId,
-                'client_id' => $client_id,
-                'house_property_data' => json_encode($HousePropertiesdata)
-            ]);
-
-            return response()->json(['success' => 'House Property details Added Successfully']);
-        } else {
-            return response()->json(['error' => 'User not authenticated'], 403);
-        }
-    }
+    
 
     public function getLocationDetails($pincode)
     {

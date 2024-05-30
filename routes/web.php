@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ClientYearController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -43,7 +44,7 @@ Route::post('/save-income-types', [ClientController::class, 'saveIncomeTypes']);
 // Salary routes
 Route::get('/store-client-salary', [ClientController::class, 'store_client_salary'])->name('store-client-salary');
 Route::get('/store-client-exempt-income', [ClientController::class, 'store_client_exempt_income'])->name('store-client-exempt-income');
-Route::get('/store-house-property', [ClientController::class, 'store_house_property'])->name('store-house-property');
+Route::get('/store-house-property-seprate', [ClientYearController::class, 'store_house_property_seprate'])->name('store-house-property-seprate');
 
 
 Route::get('/dashboard', function () {

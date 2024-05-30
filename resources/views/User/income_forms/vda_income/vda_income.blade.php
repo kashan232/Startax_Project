@@ -55,7 +55,7 @@
 </form>
 
 <script>
-function addMore() {
+ function addMore() {
       event.preventDefault();
       const formContainer = document.getElementById("formContainer");
       const newFormGroup = formContainer.cloneNode(true);

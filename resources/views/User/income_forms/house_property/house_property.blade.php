@@ -5,6 +5,15 @@
   </div>
   <div class="form_grid">
     <div class="form_input_grp">
+      <label>Chose Year</label>
+      <select name="year" id="year" class="form-control">
+        <option value="">Select Year</option>
+        <option value="2024">2024-25</option>
+        <option value="2023">2023-24</option>
+        <option value="2022">2022-23</option>
+      </select>
+    </div>
+    <div class="form_input_grp">
       <label>Type of House Property</label>
       <input type="hidden" name="client_id" value="{{ $clients_details->id }}">
       <select name="occupancyOfHouse" class="form-control" id="">
@@ -738,7 +747,7 @@
   </div>
   <div class="form_grid ip-col-3">
     <label>
-    C. Total Deduction(20%A + B)
+      C. Total Deduction(20%A + B)
     </label>
     <div class="form_input_grp">
       <label>Gross Value</label>
@@ -758,16 +767,46 @@
       event.preventDefault();
       var formData = $('#createhpfrom').serialize();
       $.ajax({
-        url: "{{ route('store-house-property') }}",
+        url: "{{ route('store-house-property-seprate') }}",
         type: 'get',
         data: formData,
         success: function(response) {
-          // Success message ko display karein ya kuch aur karein
-          console.log(response);
+          // Display success toast notification
+          toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          };
+          toastr.success('Form submitted successfully!', 'Success', {
+            "toastClass": "toast-custom-success"
+          });
+          // console.log(response);
         },
         error: function(xhr, status, error) {
-          // Error handling
-          console.error(xhr.responseText);
+          // Display error toast notification
+          toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          };
+          toastr.error('Error occurred!', 'Error', {
+            "toastClass": "toast-custom-error"
+          });
+          // console.error(xhr.responseText);
         }
       });
     });

@@ -117,18 +117,11 @@
             </div>
 
             <div class="yearSelect">
-              <select name="" id="" class="form-control">
-                <option>Select Year</option>
-                <option>2011-12</option>
-                <option>2012-12</option>
-                <option>2013-12</option>
-                <option>2014-12</option>
-                <option>2015-12</option>
-                <option>2016-12</option>
-                <option>2017-12</option>
-                <option>2018-12</option>
-                <option>2019-12</option>
-                <option>2020-12</option>
+              <select name="year" id="year" class="form-control">
+                  <option value="">Select Year</option>
+                  <option value="2024">2024-25</option>
+                  <option value="2023">2023-24</option>
+                  <option value="2022">2022-23</option>
               </select>
             </div>
           </div>

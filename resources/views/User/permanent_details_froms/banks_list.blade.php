@@ -11,9 +11,28 @@
         </tr>
       </thead>
       <tbody>
-
+        @if(!empty($bankDetails) && is_array($bankDetails))
+        <tr>
+          <td>{{ $bankDetails['IFSC_Code'] ?? 'N/A' }}</td>
+          <td>{{ $bankDetails['Bank_Account_No'] ?? 'N/A' }}</td>
+          <td>{{ $bankDetails['Bank_Name'] ?? 'N/A' }}</td>
+          <td>{{ $bankDetails['Account_Type'] ?? 'N/A' }}</td>
+          <td>
+            <div class="button-wrapper">
+              <button type="button" class="btn btn-danger btn-sm delete-bank" data-id="{{ $bankDetails['client_id'] ?? 'N/A' }}">
+                <i class="fa-solid fa-trash"></i> 
+              </button>
+            </div>
+          </td>
+        </tr>
+        @else
+        <tr>
+          <td colspan="5">No bank details found.</td>
+        </tr>
+        @endif
       </tbody>
     </table>
+
   </div>
 </div>
 
