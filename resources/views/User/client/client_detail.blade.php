@@ -7013,3 +7013,56 @@
 </div>
 <!-- ./wrapper -->
 @include('User.include.footer_include');
+
+
+<script>
+  $(document).ready(function() {
+    $('#submit_client_details_form').click(function(event) {
+      event.preventDefault();
+      var formData = $('#editClientForm').serialize();
+      $.ajax({
+        url: "{{ route('edit-client-basic-details') }}",
+        type: 'get',
+        data: formData,
+        success: function(response) {
+          // Display success toast notification
+          toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          };
+          toastr.success('Form submitted successfully!', 'Success', {
+            "toastClass": "toast-custom-success"
+          });
+          console.log(response);
+        },
+        error: function(xhr, status, error) {
+          // Display error toast notification
+          toastr.options = {
+            "positionClass": "toast-top-right",
+            "preventDuplicates": true,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+          };
+          toastr.error('Error occurred!', 'Error', {
+            "toastClass": "toast-custom-error"
+          });
+          console.error(xhr.responseText);
+        }
+      });
+    });
+  });
+</script>

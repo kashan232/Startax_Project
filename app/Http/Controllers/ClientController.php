@@ -55,18 +55,20 @@ class ClientController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            // $client_id = $id;
-            // $clients_details = Client::findOrFail($id);
-            // dd($clients_details);
+            $client_id = $request->client_id;
+            $year = $request->year;
+            // dd($client_id,$year);
 
-            // // Fetch the client details
-            // $clients_details = Client::where('id', '=', $client_id)->first();
+
+            $clients_details = Client::findOrFail($client_id);
+
+            // Fetch the client details
+            $clients_details = Client::where('id', '=', $client_id)->first();
 
             // if ($clients_details) {
             //     // Decode the personal_details JSON for the client
             //     $clients_details->personal_details = json_decode($clients_details->personal_details, true);
             // }
-            // dd($clients_details);
 
             // // Fetch the client address
             // $ClientAddreses = Client::where('id', '=', $client_id)->first();
@@ -112,7 +114,7 @@ class ClientController extends Controller
 
             // dd($HousePropertyData);
             return view('User.client.client_detail', [
-                // 'clients_details' => $clients_details,
+                'clients_details' => $clients_details,
                 // 'ClientAddreses' => $ClientAddreses,
                 // 'bankDetails' => $bankDetails,
                 // 'salaryData' => $salaryData,
@@ -139,11 +141,9 @@ class ClientController extends Controller
                 return response()->json(['success' => false, 'message' => 'Client not found'], 404);
             }
 
-            // Decode the existing personal details
-            $existingPersonalDetails = json_decode($client->personal_details, true);
-
-            // Merge with the updated details
-            $updatedPersonalDetails = array_merge($existingPersonalDetails, [
+            // Update the client details
+            $updateResult = $client->update([
+                'admin_or_user_id' => $userId,
                 'first_name' => $request->input('first_name'),
                 'middel_name' => $request->input('middel_name'),
                 'last_name' => $request->input('last_name'),
@@ -151,13 +151,7 @@ class ClientController extends Controller
                 'DOB' => $request->input('DOB'),
                 'PAN_numbr' => $request->input('PAN_numbr'),
                 'gender' => $request->input('gender'),
-                'marital_status' => $request->input('marital_status'),
-            ]);
-
-            // Update the client details
-            $updateResult = $client->update([
-                'admin_or_user_id' => $userId,
-                'personal_details' => json_encode($updatedPersonalDetails)
+                'marital_status' => $request->input('marital_status')
             ]);
 
             if ($updateResult) {
@@ -346,7 +340,7 @@ class ClientController extends Controller
         }
     }
 
-    
+
 
     public function getLocationDetails($pincode)
     {
