@@ -205,225 +205,7 @@
                         </div>
 
                         <div class="mt-3 inerr-tab-cntnt">
-                          <form action="#">
-                            <div class="card card-body">
-                              <h5 class="pt-3">
-                                <strong> Address</strong>
-                              </h5>
-
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <!-- Residence No -->
-                                  <div class="form-group">
-                                    <label class="m-0">Residence No</label>
-                                    <input type="number" class="form-control rounded-0" placeholder="Enter Your Number" />
-                                  </div>
-                                  <!-- Residence Name -->
-                                  <div class="form-group">
-                                    <label class="m-0">Residence Name</label>
-                                    <input type="text" class="form-control rounded-0" placeholder="Enter Your Residence Name" />
-                                  </div>
-                                  <!-- Road Or Street -->
-                                  <div class="form-group">
-                                    <label class="m-0">Road Or Street</label>
-                                    <input type="text" class="form-control rounded-0" placeholder="Enter Your Road Or Street" />
-                                  </div>
-                                  <!-- Pincode -->
-                                  <div class="form-group">
-                                    <label class="m-0">Pincode</label>
-                                    <input type="number" class="form-control rounded-0" placeholder="Enter Your Pincode" />
-                                  </div>
-                                  <!-- Locality Or Area -->
-                                  <div class="form-group">
-                                    <label class="m-0">Locality Or Area</label>
-                                    <input type="text" class="form-control rounded-0" placeholder="Enter Your Area / Locality" />
-                                  </div>
-                                  <!-- City / Town / District -->
-                                  <div class="form-group">
-                                    <label class="m-0">City / Town / District</label>
-                                    <input type="text" class="form-control rounded-0" placeholder="Enter Your Town" />
-                                  </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                  <!-- State Code -->
-                                  <div class="form-group">
-                                    <label class="m-0">State Code</label>
-                                    <select class="form-control rounded-0">
-                                      <option>Select Option</option>
-                                      <option value="ANDHRAPRADESH">
-                                        ANDHRA PRADESH
-                                      </option>
-                                      <option value="ARUNACHALPRADESH">
-                                        ARUNACHAL PRADESH
-                                      </option>
-                                      <option value="ASSAM">ASSAM</option>
-                                      <option value="BIHAR">BIHAR</option>
-                                      <option value="CHANDIGARH">
-                                        CHANDIGARH
-                                      </option>
-                                      <option value="CHHATISHGARH">
-                                        CHHATISHGARH
-                                      </option>
-                                      <option value="DADRANAGARHAVELI">
-                                        DADRA &amp; NAGAR HAVELI
-                                      </option>
-                                      <option value="DAMANDIU">
-                                        DAMAN &amp; DIU
-                                      </option>
-                                      <option selected="selected" value="DELHI">
-                                        DELHI
-                                      </option>
-                                      <option value="GOA">GOA</option>
-                                      <option value="GUJARAT">
-                                        GUJARAT
-                                      </option>
-                                      <option value="HARYANA">
-                                        HARYANA
-                                      </option>
-                                      <option value="HIMACHALPRADESH">
-                                        HIMACHAL PRADESH
-                                      </option>
-                                      <option value="JAMMUKASHMIR">
-                                        JAMMU &amp; KASHMIR
-                                      </option>
-                                      <option value="JHARKHAND">
-                                        JHARKHAND
-                                      </option>
-                                      <option value="KARNATAKA">
-                                        KARNATAKA
-                                      </option>
-                                      <option value="KERALA">KERALA</option>
-                                      <option value="LAKHSWADEEP">
-                                        LAKHSWADEEP
-                                      </option>
-                                      <option value="LADAKH">LADAKH</option>
-                                      <option value="MADHYAPRADESH">
-                                        MADHYA PRADESH
-                                      </option>
-                                      <option value="MAHARASHTRA">
-                                        MAHARASHTRA
-                                      </option>
-                                      <option value="MANIPUR">
-                                        MANIPUR
-                                      </option>
-                                      <option value="MEGHALAYA">
-                                        MEGHALAYA
-                                      </option>
-                                      <option value="MIZORAM">
-                                        MIZORAM
-                                      </option>
-                                      <option value="NAGALAND">
-                                        NAGALAND
-                                      </option>
-                                      <option value="ORISSA">ORISSA</option>
-                                      <option value="PONDICHERRY">
-                                        PONDICHERRY
-                                      </option>
-                                      <option value="PUNJAB">PUNJAB</option>
-                                      <option value="RAJASTHAN">
-                                        RAJASTHAN
-                                      </option>
-                                      <option value="SIKKIM">SIKKIM</option>
-                                      <option value="TAMILNADU">
-                                        TAMIL NADU
-                                      </option>
-                                      <option value="TELANGANA">
-                                        TELANGANA
-                                      </option>
-                                      <option value="TRIPURA">
-                                        TRIPURA
-                                      </option>
-                                      <option value="UTTARANCHAL">
-                                        UTTARAKHAND
-                                      </option>
-                                      <option value="UTTARPRADESH">
-                                        UTTAR PRADESH
-                                      </option>
-                                      <option value="WESTBENGAL">
-                                        WEST BENGAL
-                                      </option>
-                                      <option value="StateoutsideIndia">
-                                        State outside India
-                                      </option>
-                                      <option value="NotInit"></option>
-                                    </select>
-                                  </div>
-                                  <!-- Country Code -->
-                                  <div class="form-group">
-                                    <label class="m-0">Country Code *</label>
-                                    <select class="form-control rounded-0">
-                                      <option>Select Option</option>
-                                      <option selected="selected" value="INDIA">
-                                        INDIA
-                                      </option>
-                                      <option value="AFGHANISTAN">
-                                        AFGHANISTAN
-                                      </option>
-                                      <option value="ALAND_ISLANDS">
-                                        ÅLAND ISLANDS
-                                      </option>
-                                      <option value="ALBANIA">
-                                        ALBANIA
-                                      </option>
-                                      <option value="ALGERIA">
-                                        ALGERIA
-                                      </option>
-                                      <option value="AMERICAN_SAMOA">
-                                        AMERICAN SAMOA
-                                      </option>
-                                      <option value="ANDORRA">
-                                        ANDORRA
-                                      </option>
-                                      <option value="ANGOLA">ANGOLA</option>
-                                      <option value="ANGUILLA">
-                                        ANGUILLA
-                                      </option>
-                                      <option value="ANTARCTICA">
-                                        ANTARCTICA
-                                      </option>
-                                      <option value="ANTIGUA_AND_BARBUDA">
-                                        ANTIGUA AND BARBUDA
-                                      </option>
-                                      <option value="ARGENTINA">
-                                        ARGENTINA
-                                      </option>
-                                      <option value="ARMENIA">
-                                        ARMENIA
-                                      </option>
-                                      <option value="ARUBA">ARUBA</option>
-                                    </select>
-                                  </div>
-                                  <!-- Country Code Mobile -->
-                                  <div class="form-group">
-                                    <label class="m-0">Country Code Mobile</label>
-                                    <input type="number" class="form-control rounded-0" placeholder="Enter Your Code Mobile" />
-                                  </div>
-                                  <!-- Mobile Phone number -->
-                                  <div class="form-group">
-                                    <label class="m-0">Mobile Phone number</label>
-                                    <input type="number" class="form-control rounded-0" placeholder="Enter Your Number" />
-                                  </div>
-                                  <!-- Zip Code -->
-                                  <div class="form-group">
-                                    <label class="m-0">Zip Code</label>
-                                    <input type="number" class="form-control rounded-0" placeholder="Enter Your Zip Code" />
-                                  </div>
-                                  <!-- Email Address -->
-                                  <div class="form-group">
-                                    <label class="m-0">Email Address *</label>
-                                    <input type="email" class="form-control rounded-0" placeholder="Enter Your Email" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="row">
-                              <div class="col-md-12">
-                                <input type="submit" style="width: fit-content" class="btn btn-block btn-primary" value="Submit" />
-                              </div>
-                            </div>
-                          </form>
+                          @include('User.permanent_details_froms.address');
                         </div>
 
                         <div class="mt-3 inerr-tab-cntnt">
@@ -7060,6 +6842,27 @@
           toastr.error('Error occurred!', 'Error', {
             "toastClass": "toast-custom-error"
           });
+          console.error(xhr.responseText);
+        }
+      });
+    });
+  });
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    $('#Client_address_form').click(function(event) {
+      event.preventDefault();
+      var formData = $('#editClientaddressForm').serialize();
+      $.ajax({
+        url: "{{ route('store-client-address') }}",
+        type: 'get',
+        data: formData,
+        success: function(response) {
+          console.log(response);
+        },
+        error: function(xhr, status, error) {
           console.error(xhr.responseText);
         }
       });

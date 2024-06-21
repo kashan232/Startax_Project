@@ -91,7 +91,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form method="GET" action="{{ url('client-detail') }}" id="client-detail-form">
+            <form method="GET" action="{{ route('client-detail') }}" id="client-detail-form">
               <input type="hidden" id="client-id" name="client_id">
               <div class="form-group">
                 <label class="m-0">Select Years</label>
@@ -124,9 +124,10 @@
     </div>
 
 
+
     @include('User.include.footer_include');
 
-    <script>
+    <!-- <script>
       document.addEventListener('DOMContentLoaded', function() {
         const tableRows = document.querySelectorAll('#example1 tbody tr');
         const clientIdInput = document.getElementById('client-id');
@@ -140,4 +141,4 @@
           });
         });
       });
-    </script>
+    </script> -->

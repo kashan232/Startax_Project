@@ -1,72 +1,223 @@
-<div class="for-heading">
-  <h5>Address</h5>
-</div>
 <form id="editClientaddressForm">
   @csrf
-  <div class="form_grid">
-    <div class="form_input_grp">
-      <input type="hidden" name="update_id" value="{{ $clients_details->id }}">
-      <label>Flat/Door/Block Number *</label>
-      <input type="text" name="flat_door" placeholder="Enter Your Block Number" value="{{ $ClientAddreses->address_details['flat_door'] ?? '' }}" />
-    </div>
-    <div class="form_input_grp">
-      <label>Premise Name (optional)</label>
-      <input type="text" name="Premise_name" placeholder="Enter Your Name" value="{{ $ClientAddreses->address_details['Premise_name'] ?? '' }}" />
+  <div class="card card-body">
+    <h5 class="pt-3">
+      <strong> Address</strong>
+    </h5>
+
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Residence No -->
+        <div class="form-group">
+          <input type="hidden" name="update_id" value="{{ $clients_details->id }}">
+          <label class="m-0">Residence No</label>
+          <input type="number" name="residence_no" class="form-control rounded-0" placeholder="Enter Your Number" />
+        </div>
+        <!-- Residence Name -->
+        <div class="form-group">
+          <label class="m-0">Residence Name</label>
+          <input type="text" name="residence_name" class="form-control rounded-0" placeholder="Enter Your Residence Name" />
+        </div>
+        <!-- Road Or Street -->
+        <div class="form-group">
+          <label class="m-0">Road Or Street</label>
+          <input type="text" name="road_street" class="form-control rounded-0" placeholder="Enter Your Road Or Street" />
+        </div>
+        <!-- Pincode -->
+        <div class="form-group">
+          <label class="m-0">Pincode</label>
+          <input type="number" name="pin_code" class="form-control rounded-0" placeholder="Enter Your Pincode" />
+        </div>
+        <!-- Locality Or Area -->
+        <div class="form-group">
+          <label class="m-0">Locality Or Area</label>
+          <input type="text" name="locality_or_area" class="form-control rounded-0" placeholder="Enter Your Area / Locality" />
+        </div>
+        <!-- City / Town / District -->
+        <div class="form-group">
+          <label class="m-0">City / Town / District</label>
+          <input type="text" name="district" class="form-control rounded-0" placeholder="Enter Your Town" />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <!-- State Code -->
+        <div class="form-group">
+          <label class="m-0">State Code</label>
+          <select class="form-control rounded-0" name="State" id="State">
+            <option>Select Option</option>
+            <option value="ANDHRAPRADESH">
+              ANDHRA PRADESH
+            </option>
+            <option value="ARUNACHALPRADESH">
+              ARUNACHAL PRADESH
+            </option>
+            <option value="ASSAM">ASSAM</option>
+            <option value="BIHAR">BIHAR</option>
+            <option value="CHANDIGARH">
+              CHANDIGARH
+            </option>
+            <option value="CHHATISHGARH">
+              CHHATISHGARH
+            </option>
+            <option value="DADRANAGARHAVELI">
+              DADRA &amp; NAGAR HAVELI
+            </option>
+            <option value="DAMANDIU">
+              DAMAN &amp; DIU
+            </option>
+            <option selected="selected" value="DELHI">
+              DELHI
+            </option>
+            <option value="GOA">GOA</option>
+            <option value="GUJARAT">
+              GUJARAT
+            </option>
+            <option value="HARYANA">
+              HARYANA
+            </option>
+            <option value="HIMACHALPRADESH">
+              HIMACHAL PRADESH
+            </option>
+            <option value="JAMMUKASHMIR">
+              JAMMU &amp; KASHMIR
+            </option>
+            <option value="JHARKHAND">
+              JHARKHAND
+            </option>
+            <option value="KARNATAKA">
+              KARNATAKA
+            </option>
+            <option value="KERALA">KERALA</option>
+            <option value="LAKHSWADEEP">
+              LAKHSWADEEP
+            </option>
+            <option value="LADAKH">LADAKH</option>
+            <option value="MADHYAPRADESH">
+              MADHYA PRADESH
+            </option>
+            <option value="MAHARASHTRA">
+              MAHARASHTRA
+            </option>
+            <option value="MANIPUR">
+              MANIPUR
+            </option>
+            <option value="MEGHALAYA">
+              MEGHALAYA
+            </option>
+            <option value="MIZORAM">
+              MIZORAM
+            </option>
+            <option value="NAGALAND">
+              NAGALAND
+            </option>
+            <option value="ORISSA">ORISSA</option>
+            <option value="PONDICHERRY">
+              PONDICHERRY
+            </option>
+            <option value="PUNJAB">PUNJAB</option>
+            <option value="RAJASTHAN">
+              RAJASTHAN
+            </option>
+            <option value="SIKKIM">SIKKIM</option>
+            <option value="TAMILNADU">
+              TAMIL NADU
+            </option>
+            <option value="TELANGANA">
+              TELANGANA
+            </option>
+            <option value="TRIPURA">
+              TRIPURA
+            </option>
+            <option value="UTTARANCHAL">
+              UTTARAKHAND
+            </option>
+            <option value="UTTARPRADESH">
+              UTTAR PRADESH
+            </option>
+            <option value="WESTBENGAL">
+              WEST BENGAL
+            </option>
+            <option value="StateoutsideIndia">
+              State outside India
+            </option>
+            <option value="NotInit"></option>
+          </select>
+        </div>
+        <!-- Country Code -->
+        <div class="form-group">
+          <label class="m-0">Country Code *</label>
+          <select class="form-control rounded-0" name="country_code">
+            <option>Select Option</option>
+            <option selected="selected" value="INDIA">
+              INDIA
+            </option>
+            <option value="AFGHANISTAN">
+              AFGHANISTAN
+            </option>
+            <option value="ALAND_ISLANDS">
+              ÅLAND ISLANDS
+            </option>
+            <option value="ALBANIA">
+              ALBANIA
+            </option>
+            <option value="ALGERIA">
+              ALGERIA
+            </option>
+            <option value="AMERICAN_SAMOA">
+              AMERICAN SAMOA
+            </option>
+            <option value="ANDORRA">
+              ANDORRA
+            </option>
+            <option value="ANGOLA">ANGOLA</option>
+            <option value="ANGUILLA">
+              ANGUILLA
+            </option>
+            <option value="ANTARCTICA">
+              ANTARCTICA
+            </option>
+            <option value="ANTIGUA_AND_BARBUDA">
+              ANTIGUA AND BARBUDA
+            </option>
+            <option value="ARGENTINA">
+              ARGENTINA
+            </option>
+            <option value="ARMENIA">
+              ARMENIA
+            </option>
+            <option value="ARUBA">ARUBA</option>
+          </select>
+        </div>
+        <!-- Country Code Mobile -->
+        <div class="form-group">
+          <label class="m-0">Country Code Mobile</label>
+          <input type="number" name="country_code_mobile" class="form-control rounded-0" placeholder="Enter Your Code Mobile" />
+        </div>
+        <!-- Mobile Phone number -->
+        <div class="form-group">
+          <label class="m-0">Mobile Phone number</label>
+          <input type="number" name="mobile_number" class="form-control rounded-0" placeholder="Enter Your Number" />
+        </div>
+        <!-- Zip Code -->
+        <div class="form-group">
+          <label class="m-0">Zip Code</label>
+          <input type="number" name="zip_code" class="form-control rounded-0" placeholder="Enter Your Zip Code" />
+        </div>
+        <!-- Email Address -->
+        <div class="form-group">
+          <label class="m-0">Email Address *</label>
+          <input type="email" name="email" class="form-control rounded-0" placeholder="Enter Your Email" />
+        </div>
+      </div>
     </div>
   </div>
-  <div class="form_grid">
-    <div class="form_input_grp">
-      <label>Road / Street (optional)</label>
-      <input type="text" name="road_street" placeholder="Enter Your Road" value="{{ $ClientAddreses->address_details['road_street'] ?? '' }}" />
-    </div>
-    <div class="form_input_grp">
-      <label>Pincode</label>
-      <input type="number" name="pin_code" placeholder="Enter Your Pincode" value="{{ $ClientAddreses->address_details['pin_code'] ?? '' }}" />
+
+  <div class="row">
+    <div class="col-md-12">
+      <input type="submit" id="Client_address_form" style="width: fit-content" class="btn btn-block btn-primary" value="Submit" />
     </div>
   </div>
-  <div class="form_grid">
-    <div class="form_input_grp">
-      <label>Area / Locality *</label>
-      <input type="text" name="Area_locality" placeholder="Enter Your Area / Locality" value="{{ $ClientAddreses->address_details['Area_locality'] ?? '' }}" />
-    </div>
-    <div class="form_input_grp">
-      <label>District</label>
-      <input type="text" name="district" placeholder="Enter Your District" value="{{ $ClientAddreses->address_details['district'] ?? '' }}" />
-    </div>
-  </div>
-  <div class="form_grid">
-    <div class="form_input_grp">
-      <label>State</label>
-      <select name="State" class="form-control">
-        <option>Select option</option>
-        @foreach(['AndhraPradesh', 'ArunachalPradesh', 'Assam', 'Bihar', 'Chandigarh', 'Chhattisgarh', 'DadraNagarHaveli', 'DamanDiu', 'Delhi', 'Goa', 'Gujarat', 'Haryana', 'HimachalPradesh', 'JammuKashmir', 'Jharkhand', 'Karnataka', 'Kerala', 'Lakshadweep', 'Ladakh', 'MadhyaPradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Orissa', 'Pondicherry', 'Punjab', 'Rajasthan', 'Sikkim', 'TamilNadu', 'Telangana', 'Tripura', 'Uttarakhand', 'UttarPradesh', 'WestBengal', 'StateOutsideIndia', 'NotInit'] as $state)
-          <option value="{{ $state }}" {{ (isset($ClientAddreses->address_details['State']) && $ClientAddreses->address_details['State'] == $state) ? 'selected' : '' }}>
-            {{ $state }}
-          </option>
-        @endforeach
-      </select>
-    </div>
-    <div class="form_input_grp">
-      <label>Country *</label>
-      <select name="Country" class="form-control">
-        <option>Select Option</option>
-        @foreach(['INDIA', 'AFGHANISTAN', 'ÅLAND_ISLANDS', 'ALBANIA', 'ALGERIA', 'AMERICAN_SAMOA', 'ANDORRA', 'ANGOLA', 'ANGUILLA', 'ANTARCTICA', 'ANTIGUA_AND_BARBUDA', 'ARGENTINA', 'ARMENIA', 'ARUBA'] as $country)
-          <option value="{{ $country }}" {{ (isset($ClientAddreses->address_details['Country']) && $ClientAddreses->address_details['Country'] == $country) ? 'selected' : '' }}>
-            {{ $country }}
-          </option>
-        @endforeach
-      </select>
-    </div>
-    <div class="form_input_grp">
-      <label>Mobile Phone number</label>
-      <input type="number" name="mobile_phone" placeholder="Enter Your Number" value="{{ $ClientAddreses->address_details['mobile_phone'] ?? '' }}" />
-    </div>
-    <div class="form_input_grp">
-      <label>Email Address *</label>
-      <input type="email" name="email_address" placeholder="Enter Your Email" value="{{ $ClientAddreses->address_details['email_address'] ?? '' }}" />
-    </div>
-  </div>
-  <input id="Client_address_form" class="submit_btton" type="submit" value="Submit" />
 </form>
 
 

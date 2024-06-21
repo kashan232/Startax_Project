@@ -51,7 +51,7 @@ class ClientController extends Controller
         }
     }
 
-    public function client_detail(Request $request)
+    public function client_detail(Request $request, $id)
     {
         if (Auth::id()) {
             $userId = Auth::id();
@@ -177,27 +177,21 @@ class ClientController extends Controller
                 return response()->json(['success' => false, 'message' => 'Client not found'], 404);
             }
 
-            // Decode the existing address details
-            $existingAddressDetails = json_decode($client->address_details, true);
-
-            // Merge with the updated details
-            $updatedAddressDetails = array_merge($existingAddressDetails ?? [], [
-                'flat_door' => $request->input('flat_door'),
-                'Premise_name' => $request->input('Premise_name'),
-                'road_street' => $request->input('road_street'),
-                'pin_code' => $request->input('pin_code'),
-                'Area_locality' => $request->input('Area_locality'),
-                'district' => $request->input('district'),
-                'State' => $request->input('State'),
-                'Country' => $request->input('Country'),
-                'mobile_phone' => $request->input('mobile_phone'),
-                'email_address' => $request->input('email_address'),
-            ]);
-
             // Update the client address details
             $updateResult = $client->update([
                 'admin_or_user_id' => $userId,
-                'address_details' => json_encode($updatedAddressDetails)
+                'residence_no' => $request->input('residence_no'),
+                'residence_name' => $request->input('residence_name'),
+                'road_street' => $request->input('road_street'),
+                'pin_code' => $request->input('pin_code'),
+                'locality_or_area' => $request->input('locality_or_area'),
+                'district' => $request->input('district'),
+                'State' => $request->input('State'),
+                'country_code' => $request->input('country_code'),
+                'country_code_mobile' => $request->input('country_code_mobile'),
+                'mobile_number' => $request->input('mobile_number'),
+                'zip_code' => $request->input('zip_code'),
+                'email' => $request->input('email'),
             ]);
 
             if ($updateResult) {
