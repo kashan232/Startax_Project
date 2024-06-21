@@ -1,128 +1,119 @@
-@include('User.include.header_include')
-<div class="app">
-  <!-- header sections Start -->
-  @include('User.include.navbar_include')
-  <!-- header sections end -->
+@include('User.include.header_include');
+<div class="wrapper">
+  <!-- Navbar -->
+  @include('User.include.navbar_include');
+  <!-- /.navbar -->
+  <!-- Main Sidebar Container -->
+  @include('User.include.sidebar_include');
 
-  <div class="wrapper">
-    <!-- SIde Bar Start -->
-    @include('User.include.sidebar_include')
-    <!-- SIde Bar ENd  -->
-
-    <div class="main-container">
-      <div class="content-wrapper">
-        <div class="content-section">
-          <div class="heading_button">
-            <div class="content-section-title">Add Client</div>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Add Customer</h1>
           </div>
-          <div class="Form_customer">
-            <form id="add_client_form">
-              @csrf
-              <div class="form_grid">
-                <div class="form_input_grp">
-                  <label>Client Type *</label>
-                  <select name="client_type" class="form-control" required>
-                    <option value="Individual"> Individual</option>
-                    <option value="HUF"> HUF</option>
-                    <option value="CompanyPublicInterested"> Company Public</option>
-                    <option value="CompanyPublicNotInterested"> Company Private</option>
-                    <option value="LLP"> LLP</option>
-                    <option value="Firm"> Firm</option>
-                    <option value="AOP"> AOP / BOI</option>
-                    <option value="OtherCooperativeSociety"> Cooperative Society</option>
-                  </select>
-                </div>
-                <div class="form_input_grp">
-                  <label>Assessment Year *</label>
-                  <select name="AY" class="form-control" required>
-                    <option>Select Option</option>
-                    <option value="2024-2025">2024-2025</option>
-                    <option value="2023-2024">2023-2024</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form_grid">
-                <div class="form_input_grp">
-                  <label>First Name *</label>
-                  <input type="text" name="first_name" placeholder="Enter Your Name" required />
-                </div>
-                <div class="form_input_grp">
-                  <label>Middel Name</label>
-                  <input type="text" name="middel_name" placeholder="Enter Your Name" />
-                </div>
-              </div>
-              <div class="form_grid">
-                <div class="form_input_grp">
-                  <label>Last Name *</label>
-                  <input type="text" name="last_name" placeholder="Enter Your Name" required />
-                </div>
-                <div class="form_input_grp">
-                  <label>Father's Name *</label>
-                  <input type="text" name="father_name" placeholder="Enter Your Name" required />
-                </div>
-              </div>
-              <div class="form_grid">
-                <div class="form_input_grp">
-                  <label>Date Of Birth *</label>
-                  <input type="date" name="DOB" placeholder="Enter Your Name" required />
-                </div>
-                <div class="form_input_grp">
-                  <label>PAN number *</label>
-                  <input type="number" name="PAN_numbr" placeholder="Enter Your Name" />
-                </div>
-              </div>
-              <div class="form_grid">
-                <div class="form_input_grp">
-                  <label>Gender *</label>
-                  <select name="gender" class="form-control" required>
-                    <option>Select Option</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                  </select>
-                </div>
-                <div class="form_input_grp">
-                  <label>Marital Status</label>
-                  <select name="marital_status" class="form-control">
-                    <option>Select Option</option>
-                    <option value="Married">Married</option>
-                    <option value="Unmarried">Unmarried</option>
-                  </select>
-                </div>
-              </div>
-              <input id="submit_client_form" class="submit_btton" type="submit" value="Submit" />
-            </form>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Add Customer</li>
+            </ol>
           </div>
         </div>
       </div>
-      <!-- COnetnt_wrpper Sec Start -->
-    </div>
+      <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">Add Customer</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <form action="{{ route('store-client') }}" method="GET">
+              @csrf
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="m-0">Client Type</label>
+                    <select name="client_type" id="client_type"  class="form-control rounded-0" >
+                      <option value="Individual">Individual</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="m-0">First Name</label>
+                    <input type="text" name="first_name" class="form-control rounded-0" placeholder="Enter First Name" />
+                  </div>
+
+                  <div class="form-group">
+                    <label class="m-0">Middel Name</label>
+                    <input type="text" name="middel_name" class="form-control rounded-0" placeholder="Enter Middel Name" />
+                  </div>
+                  <div class="form-group">
+                    <label class="m-0">Last Name</label>
+                    <input type="text" name="last_name" class="form-control rounded-0" placeholder="Enter Last Name" />
+                  </div>
+                  <div class="form-group">
+                    <label class="m-0">Father's Name</label>
+                    <input type="text" name="father_name" class="form-control rounded-0" placeholder="Enter Father's Name" />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="m-0">Date Of Birth</label>
+                    <input type="date" name="DOB" class="form-control rounded-0" placeholder="Enter Date Of Birth" />
+                  </div>
+                  <div class="form-group">
+                    <label class="m-0">PAN Number *</label>
+                    <input type="number" name="PAN_numbr" class="form-control rounded-0" placeholder="Enter PAN Number" />
+                  </div>
+                  <div class="form-group">
+                    <label class="m-0">Gender</label>
+                    <select class="form-control rounded-0" name="gender" style="width: 100%">
+                      <option selected="selected">Select Option</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="m-0">Marital Status</label>
+                    <select class="form-control rounded-0 select2" name="marital_status" style="width: 100%">
+                      <option selected="selected">Select Option</option>
+                      <option>Married</option>
+                      <option>UnMarried</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-md-12">
+                  <input type="submit" style="width: fit-content" class="btn btn-block btn-primary" value="Submit" />
+                </div>
+
+                <!-- /.col -->
+              </div>
+            </form>
+            <!-- /.row -->
+
+            <!-- /.row -->
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
   </div>
-  <div class="overlay-app"></div>
+  <!-- /.content-wrapper -->
 </div>
-@include('User.include.footer_include')
-
-<script>
-  $(document).ready(function() {
-    $('#submit_client_form').click(function(event) {
-      event.preventDefault();
-      var formData = $('#add_client_form').serialize();
-      $.ajax({
-        url: "{{ route('store-client') }}",
-        type: 'get',
-        data: formData,
-        success: function(response) {
-          console.log(response);
-          alert('Client Added successfully!');
-        },
-        error: function(xhr, status, error) {
-          console.error(xhr.responseText);
-          alert('Error: ' + xhr.responseText);
-        }
-      });
-    });
-  });
-</script>
-
-</body>
-
-</html>
+<!-- ./wrapper -->
+@include('User.include.footer_include');

@@ -30,9 +30,10 @@ class ClientController extends Controller
             $usertype = Auth()->user()->usertype;
             $userId = Auth::id();
 
-            $personal_details = [
+            // New bank data create karein
+            $Clients = Client::create([
+                'admin_or_user_id' => $userId,
                 'client_type' => $request->input('client_type'),
-                'AY' => $request->input('AY'),
                 'first_name' => $request->input('first_name'),
                 'middel_name' => $request->input('middel_name'),
                 'last_name' => $request->input('last_name'),
@@ -41,12 +42,8 @@ class ClientController extends Controller
                 'PAN_numbr' => $request->input('PAN_numbr'),
                 'gender' => $request->input('gender'),
                 'marital_status' => $request->input('marital_status'),
-            ];
-
-            // New bank data create karein
-            $Clients = Client::create([
-                'admin_or_user_id' => $userId,
-                'personal_details' => json_encode($personal_details)
+                'created_at'        => Carbon::now(),
+                'updated_at'        => Carbon::now(),
             ]);
             return redirect()->back()->with('Client-added', 'Client Added Successfully');
         } else {
@@ -54,73 +51,73 @@ class ClientController extends Controller
         }
     }
 
-    public function client_detail(Request $request, $id)
+    public function client_detail(Request $request)
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            $client_id = $id;
+            // $client_id = $id;
             // $clients_details = Client::findOrFail($id);
             // dd($clients_details);
 
-            // Fetch the client details
-            $clients_details = Client::where('id', '=', $client_id)->first();
+            // // Fetch the client details
+            // $clients_details = Client::where('id', '=', $client_id)->first();
 
-            if ($clients_details) {
-                // Decode the personal_details JSON for the client
-                $clients_details->personal_details = json_decode($clients_details->personal_details, true);
-            }
+            // if ($clients_details) {
+            //     // Decode the personal_details JSON for the client
+            //     $clients_details->personal_details = json_decode($clients_details->personal_details, true);
+            // }
             // dd($clients_details);
 
-            // Fetch the client address
-            $ClientAddreses = Client::where('id', '=', $client_id)->first();
+            // // Fetch the client address
+            // $ClientAddreses = Client::where('id', '=', $client_id)->first();
 
-            if ($ClientAddreses) {
-                // Decode the personal_details JSON for the client
-                $ClientAddreses->address_details = json_decode($ClientAddreses->address_details, true);
-            }
+            // if ($ClientAddreses) {
+            //     // Decode the personal_details JSON for the client
+            //     $ClientAddreses->address_details = json_decode($ClientAddreses->address_details, true);
+            // }
 
-            // Fetch the client details including bank details
-            $client = Client::find($client_id);
+            // // Fetch the client details including bank details
+            // $client = Client::find($client_id);
 
-            $bankDetails = [];
-            if ($client) {
-                // Decode the bank_details JSON for the client
-                $bankDetails = json_decode($client->bank_details, true);
-                $bankDetails['client_id'] = $client->id; // Include the client ID
-            }
+            // $bankDetails = [];
+            // if ($client) {
+            //     // Decode the bank_details JSON for the client
+            //     $bankDetails = json_decode($client->bank_details, true);
+            //     $bankDetails['client_id'] = $client->id; // Include the client ID
+            // }
 
 
-            // Retrieve all client salaries
-            $ClientSalaries = ClientSalary::where('client_id', '=', $client_id)->get();
-            $salaryData = [];
+            // // Retrieve all client salaries
+            // $ClientSalaries = ClientSalary::where('client_id', '=', $client_id)->get();
+            // $salaryData = [];
 
-            foreach ($ClientSalaries as $salary) {
-                $data = json_decode($salary->salary_data, true);
-                $data['id'] = $salary->id;
-                $salaryData[] = $data;
-            }
+            // foreach ($ClientSalaries as $salary) {
+            //     $data = json_decode($salary->salary_data, true);
+            //     $data['id'] = $salary->id;
+            //     $salaryData[] = $data;
+            // }
 
-            // Retrieve selected income types for the client
-            $selectedIncomeTypes = IncomeType::where('client_id', '=', $client_id)->pluck('income_type')->toArray();
+            // // Retrieve selected income types for the client
+            // $selectedIncomeTypes = IncomeType::where('client_id', '=', $client_id)->pluck('income_type')->toArray();
 
-            // Retrieve all client salaries
-            $HouseProperties = HouseProperty::where('client_id', '=', $client_id)->get();
-            $HousePropertyData = [];
+            // // Retrieve all client salaries
+            // $HouseProperties = HouseProperty::where('client_id', '=', $client_id)->get();
+            // $HousePropertyData = [];
 
-            foreach ($HouseProperties as $HouseProperty) {
-                $data = json_decode($HouseProperty->house_property_data, true);
-                $data['id'] = $HouseProperty->id;
-                $HousePropertyData[] = $data;
-            }
+            // foreach ($HouseProperties as $HouseProperty) {
+            //     $data = json_decode($HouseProperty->house_property_data, true);
+            //     $data['id'] = $HouseProperty->id;
+            //     $HousePropertyData[] = $data;
+            // }
 
             // dd($HousePropertyData);
             return view('User.client.client_detail', [
-                'clients_details' => $clients_details,
-                'ClientAddreses' => $ClientAddreses,
-                'bankDetails' => $bankDetails,
-                'salaryData' => $salaryData,
-                'selectedIncomeTypes' => $selectedIncomeTypes,
-                'HousePropertyData' => $HousePropertyData,
+                // 'clients_details' => $clients_details,
+                // 'ClientAddreses' => $ClientAddreses,
+                // 'bankDetails' => $bankDetails,
+                // 'salaryData' => $salaryData,
+                // 'selectedIncomeTypes' => $selectedIncomeTypes,
+                // 'HousePropertyData' => $HousePropertyData,
             ]);
         } else {
             return redirect()->back();

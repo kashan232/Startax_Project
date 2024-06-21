@@ -1,53 +1,75 @@
-<form id="editClientForm">
-  @csrf
-  <div class="form_grid">
-    <div class="form_input_grp">
-      <input type="hidden" name="update_id" value="{{ $clients_details->id }}">
-      <label>First Name</label>
-      <input type="text" name="first_name" placeholder="Enter Your Name" value="{{ $clients_details->personal_details['first_name'] }}" />
+<form action="#">
+    <div class="card card-body">
+        <h5 class="pt-3">
+            <strong> Basic Details</strong>
+        </h5>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Hidden ID field -->
+                <input type="hidden" name="update_id" value="{{ $clients_details->id }}">
+                
+                <!-- First Name -->
+                <div class="form-group">
+                    <label class="m-0">First Name</label>
+                    <input type="text" class="form-control rounded-0" placeholder="Enter First Name" value="{{ $clients_details->first_name }}" />
+                </div>
+                
+                <!-- Middle Name -->
+                <div class="form-group">
+                    <label class="m-0">Middle Name</label>
+                    <input type="text" class="form-control rounded-0" placeholder="Enter Middle Name" value="{{ $clients_details->middel_name }}" />
+                </div>
+                
+                <!-- Last Name -->
+                <div class="form-group">
+                    <label class="m-0">Last Name</label>
+                    <input type="text" class="form-control rounded-0" placeholder="Enter Last Name" value="{{ $clients_details->last_name }}" />
+                </div>
+                
+                <!-- Father's Name -->
+                <div class="form-group">
+                    <label class="m-0">Father's Name</label>
+                    <input type="text" class="form-control rounded-0" placeholder="Enter Father's Name" value="{{ $clients_details->father_name }}" />
+                </div>
+                
+                <!-- PAN Number -->
+                <div class="form-group">
+                    <label class="m-0">PAN Number *</label>
+                    <input type="number" class="form-control rounded-0" placeholder="Enter PAN Number" value="{{ $clients_details->PAN_numbr }}" />
+                </div>
+                
+                <!-- Marital Status -->
+                <div class="form-group">
+                    <label class="m-0">Marital Status</label>
+                    <select class="form-control rounded-0" style="width: 100%" name="marital_status">
+                        <option>Select Option</option>
+                        <option value="Married" {{ $clients_details->marital_status == 'Married' ? 'selected' : '' }}>Married</option>
+                        <option value="UnMarried" {{ $clients_details->marital_status == 'UnMarried' ? 'selected' : '' }}>UnMarried</option>
+                    </select>
+                </div>
+                
+                <!-- Date Of Birth -->
+                <div class="form-group">
+                    <label class="m-0">Date Of Birth</label>
+                    <input type="date" class="form-control rounded-0" placeholder="Enter Date Of Birth" value="{{ $clients_details->DOB }}" />
+                </div>
+                
+                <!-- Gender -->
+                <div class="form-group">
+                    <label class="m-0">Gender</label>
+                    <select class="form-control rounded-0" style="width: 100%" name="gender">
+                        <option>Select Option</option>
+                        <option value="Male" {{ $clients_details->gender == 'Male' ? 'selected' : '' }}>Male</option>
+                        <option value="Female" {{ $clients_details->gender == 'Female' ? 'selected' : '' }}>Female</option>
+                    </select>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form_input_grp">
-      <label>Middle Name</label>
-      <input type="text" name="middel_name" placeholder="Enter Your Name" value="{{ $clients_details->personal_details['middel_name'] }}"> 
+
+    <div class="row">
+        <div class="col-md-12 up-fixedbtn">
+            <input type="submit" style="width: fit-content" class="btn btn-block btn-primary" value="Submit" />
+        </div>
     </div>
-  </div>
-  <div class="form_grid">
-    <div class="form_input_grp">
-      <label>Last Name</label>
-      <input type="text" name="last_name" placeholder="Enter Your Name" value="{{ $clients_details->personal_details['last_name'] }}" />
-    </div>
-    <div class="form_input_grp">
-      <label>Father's Name</label>
-      <input type="text" name="father_name" placeholder="Enter Your Name" value="{{ $clients_details->personal_details['father_name'] }}" />
-    </div>
-  </div>
-  <div class="form_grid">
-    <div class="form_input_grp">
-      <label>Date Of Birth</label>
-      <input type="date" name="DOB" placeholder="Enter Your Name" value="{{ $clients_details->personal_details['DOB'] }}" />
-    </div>
-    <div class="form_input_grp">
-      <label>PAN number *</label>
-      <input type="number" name="PAN_numbr" placeholder="Enter Your Name" value="{{ $clients_details->personal_details['PAN_numbr'] }}" />
-    </div>
-  </div>
-  <div class="form_grid">
-    <div class="form_input_grp">
-      <label>Gender</label>
-      <select name="gender" class="form-control">
-        <option>Select Option</option>
-        <option value="Male" {{ $clients_details->personal_details['gender'] == 'Male' ? 'selected' : '' }}>Male</option>
-        <option value="Female" {{ $clients_details->personal_details['gender'] == 'Female' ? 'selected' : '' }}>Female</option>
-      </select>
-    </div>
-    <div class="form_input_grp">
-      <label>Marital Status</label>
-      <select name="marital_status" class="form-control">
-        <option>Select Option</option>
-        <option value="Married" {{ $clients_details->personal_details['marital_status'] == 'Married' ? 'selected' : '' }}>Married</option>
-        <option value="Unmarried" {{ $clients_details->personal_details['marital_status'] == 'Unmarried' ? 'selected' : '' }}>Unmarried</option>
-      </select>
-    </div>
-  </div>
-  <input id="submit_client_details_form" class="submit_btton" type="submit" value="Submit" />
 </form>

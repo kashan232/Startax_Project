@@ -1,11 +1,30 @@
+<script src="/user_panel_assets/dist/js/mainProper.js"></script>
+<script src="/user_panel_assets/plugins/jquery/jquery.min.js"></script>
+<script src="/user_panel_assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/user_panel_assets/plugins/datatables/jquery.dataTables.js"></script>
+<script src="/user_panel_assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script src="/user_panel_assets/dist/js/adminlte.min.js"></script>
+<script src="/user_panel_assets/dist/js/demo.js"></script>
+<script src="plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<script src="plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<!-- Links -->
-<script src="/user_panel_assets/assets/mainJs/main.js"></script>
-<!-- Links -->
+<script>
+    $(function() {
+        $("#example1").DataTable();
+        $("#example2").DataTable({
+            paging: true,
+            lengthChange: false,
+            searching: false,
+            ordering: true,
+            info: true,
+            autoWidth: false,
+        });
+    });
+</script>
+</body>
+</html>
