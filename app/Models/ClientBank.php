@@ -11,11 +11,5 @@ class ClientBank extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [
-        'admin_or_user_id',
-        'client_id',
-        'bank_data'
-    ];
-
-
+    protected $guarded = [];
 }

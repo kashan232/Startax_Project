@@ -53,7 +53,7 @@ class ClientController extends Controller
 
     public function client_catalog(Request $request)
     {
-        
+
         if (Auth::id()) {
             $userId = Auth::id();
             $client_id = $request->client_id;
@@ -61,8 +61,14 @@ class ClientController extends Controller
             $year = $request->year;
             // $clients_details = Client::findOrFail($client_id);
             $clients_details = Client::where('id', '=', $client_id)->first();
+             // // Fetch the client address
+            $ClientAddreses = ClientAddress::where('id', '=', $client_id)->get();
+            $ClientBanks = ClientBank::where('id', '=', $client_id)->get();
+            // dd($ClientAddreses);
             return view('User.catalog.client_catalog', [
                 'clients_details' => $clients_details,
+                'ClientAddreses' => $ClientAddreses,
+                'ClientBanks' => $ClientBanks,
             ]);
         } else {
             return redirect()->back();
@@ -112,17 +118,11 @@ class ClientController extends Controller
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            $update_id = $request->input('update_id');
-
-            // Fetch the existing client details
-            $client = Client::find($update_id);
-            if (!$client) {
-                return response()->json(['success' => false, 'message' => 'Client not found'], 404);
-            }
-
+            $client_id = $request->input('update_id');
             // Update the client address details
-            $updateResult = $client->update([
+            $ClientAddress = ClientAddress::create([
                 'admin_or_user_id' => $userId,
+                'client_id' => $client_id,
                 'residence_no' => $request->input('residence_no'),
                 'residence_name' => $request->input('residence_name'),
                 'road_street' => $request->input('road_street'),
@@ -137,7 +137,7 @@ class ClientController extends Controller
                 'email' => $request->input('email'),
             ]);
 
-            if ($updateResult) {
+            if ($ClientAddress) {
                 return response()->json(['success' => true, 'message' => 'Client address details updated successfully']);
             } else {
                 return response()->json(['success' => false, 'message' => 'Failed to update client address details']);
@@ -147,40 +147,25 @@ class ClientController extends Controller
         }
     }
 
+
     public function store_client_bank(Request $request)
     {
         if (Auth::id()) {
             $userId = Auth::id();
-            $client_id = $request->input('client_id');
-
-            $bankData = [
+            $client_id = $request->input('update_id');
+            $ClientAddress = ClientBank::create([
+                'admin_or_user_id' => $userId,
+                'client_id' => $client_id,
                 'Aadhaar_card_number' => $request->input('Aadhaar_card_number'),
                 'Aadhaar_enrollment_number' => $request->input('Aadhaar_enrollment_number'),
-                'IFSC_Code' => $request->input('bank_isfc_code'),
-                'Bank_Account_No' => $request->input('bank_acount_no'),
-                'Bank_Name' => $request->input('bank_name'),
-                'Account_Type' => $request->input('bank_acount_type')
-            ];
-
-            // Fetch the existing client details
-            $client = Client::find($client_id);
-            if (!$client) {
-                return response()->json(['success' => false, 'message' => 'Client not found'], 404);
-            }
-
-            // Decode the existing bank details
-            $existingBankDetails = json_decode($client->bank_details, true);
-
-            // Merge with the updated details
-            $updatedBankDetails = array_merge($existingBankDetails ?? [], $bankData);
-
-            // Update the client details
-            $updateResult = $client->update([
-                'admin_or_user_id' => $userId,
-                'bank_details' => json_encode($updatedBankDetails)
+                'bank_isfc_code' => $request->input('bank_isfc_code'),
+                'bank_name' => $request->input('bank_name'),
+                'Refund' => $request->input('Refund'),
+                'bank_acount_no' => $request->input('bank_acount_no'),
+                'bank_acount_type' => $request->input('bank_acount_type'),
             ]);
 
-            if ($updateResult) {
+            if ($ClientAddress) {
                 return response()->json(['success' => true, 'message' => 'Client bank details updated successfully']);
             } else {
                 return response()->json(['success' => false, 'message' => 'Failed to update client bank details']);

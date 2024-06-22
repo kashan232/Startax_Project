@@ -1,3 +1,50 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">All Clients</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>SNO#</th>
+              <th>Residence no</th>
+              <th>Residence name</th>
+              <th>Pin code</th>
+              <th>Mobile number</th>
+              <th>email</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($ClientAddreses as $ClientAddress)
+            <tr>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $ClientAddress->residence_no }}</td>
+              <td>{{ $ClientAddress->residence_name }}</td>
+              <td>{{ $ClientAddress->pin_code }}</td>
+              <td>{{ $ClientAddress->mobile_number }}</td>
+              <td>{{ $ClientAddress->email }}</td>
+              <td class="d-flex align-items-center justify-content-center">
+                <button type="button" style="width: fit-content" class="btn btn-block btn-danger btn-sm m-0">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.col -->
+</div>
+
 <form id="editClientaddressForm">
   @csrf
   <div class="card card-body">
