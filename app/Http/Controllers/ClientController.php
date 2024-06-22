@@ -51,75 +51,18 @@ class ClientController extends Controller
         }
     }
 
-    public function client_detail(Request $request, $id)
+    public function client_catalog(Request $request)
     {
+        
         if (Auth::id()) {
             $userId = Auth::id();
             $client_id = $request->client_id;
+            // dd($client_id);
             $year = $request->year;
-            // dd($client_id,$year);
-
-
-            $clients_details = Client::findOrFail($client_id);
-
-            // Fetch the client details
+            // $clients_details = Client::findOrFail($client_id);
             $clients_details = Client::where('id', '=', $client_id)->first();
-
-            // if ($clients_details) {
-            //     // Decode the personal_details JSON for the client
-            //     $clients_details->personal_details = json_decode($clients_details->personal_details, true);
-            // }
-
-            // // Fetch the client address
-            // $ClientAddreses = Client::where('id', '=', $client_id)->first();
-
-            // if ($ClientAddreses) {
-            //     // Decode the personal_details JSON for the client
-            //     $ClientAddreses->address_details = json_decode($ClientAddreses->address_details, true);
-            // }
-
-            // // Fetch the client details including bank details
-            // $client = Client::find($client_id);
-
-            // $bankDetails = [];
-            // if ($client) {
-            //     // Decode the bank_details JSON for the client
-            //     $bankDetails = json_decode($client->bank_details, true);
-            //     $bankDetails['client_id'] = $client->id; // Include the client ID
-            // }
-
-
-            // // Retrieve all client salaries
-            // $ClientSalaries = ClientSalary::where('client_id', '=', $client_id)->get();
-            // $salaryData = [];
-
-            // foreach ($ClientSalaries as $salary) {
-            //     $data = json_decode($salary->salary_data, true);
-            //     $data['id'] = $salary->id;
-            //     $salaryData[] = $data;
-            // }
-
-            // // Retrieve selected income types for the client
-            // $selectedIncomeTypes = IncomeType::where('client_id', '=', $client_id)->pluck('income_type')->toArray();
-
-            // // Retrieve all client salaries
-            // $HouseProperties = HouseProperty::where('client_id', '=', $client_id)->get();
-            // $HousePropertyData = [];
-
-            // foreach ($HouseProperties as $HouseProperty) {
-            //     $data = json_decode($HouseProperty->house_property_data, true);
-            //     $data['id'] = $HouseProperty->id;
-            //     $HousePropertyData[] = $data;
-            // }
-
-            // dd($HousePropertyData);
-            return view('User.client.client_detail', [
+            return view('User.catalog.client_catalog', [
                 'clients_details' => $clients_details,
-                // 'ClientAddreses' => $ClientAddreses,
-                // 'bankDetails' => $bankDetails,
-                // 'salaryData' => $salaryData,
-                // 'selectedIncomeTypes' => $selectedIncomeTypes,
-                // 'HousePropertyData' => $HousePropertyData,
             ]);
         } else {
             return redirect()->back();

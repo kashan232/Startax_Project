@@ -27,7 +27,7 @@ Route::get('/users', [HomeController::class, 'users'])->middleware(['auth', 'adm
 
 Route::get('/add-client', [ClientController::class, 'add_client'])->name('add-client');
 Route::get('/store-client', [ClientController::class, 'store_client'])->name('store-client');
-Route::get('/client-detail', [ClientController::class, 'client_detail'])->name('client-detail');
+Route::get('/client-catalog', [ClientController::class, 'client_catalog'])->name('client-catalog');
 Route::get('/edit-client-basic-details', [ClientController::class, 'edit_client_basic_details'])->name('edit-client-basic-details');
 Route::get('/store-client-address', [ClientController::class, 'store_client_address'])->name('store-client-address');
 Route::get('/store-client-bank', [ClientController::class, 'store_client_bank'])->name('store-client-bank');
