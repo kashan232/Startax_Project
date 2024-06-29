@@ -92,7 +92,7 @@
           </div>
           <div class="modal-body">
             <form method="GET" action="{{ route('client-catalog') }}" id="client-detail-form">
-              <input type="hidden" id="client-id" name="client_id">
+              <input type="text" id="client-id" name="client_id">
               <div class="form-group">
                 <label class="m-0">Select Years</label>
                 <select class="form-control rounded-0 select2" name="year" style="width: 100%">

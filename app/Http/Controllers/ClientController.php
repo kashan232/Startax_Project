@@ -53,27 +53,42 @@ class ClientController extends Controller
 
     public function client_catalog(Request $request)
     {
-
         if (Auth::id()) {
+            // dd($request);
             $userId = Auth::id();
             $client_id = $request->client_id;
-            // dd($client_id);
             $year = $request->year;
-            // $clients_details = Client::findOrFail($client_id);
             $clients_details = Client::where('id', '=', $client_id)->first();
-             // // Fetch the client address
             $ClientAddreses = ClientAddress::where('id', '=', $client_id)->get();
             $ClientBanks = ClientBank::where('id', '=', $client_id)->get();
-            // dd($ClientAddreses);
-            return view('User.catalog.client_catalog', [
-                'clients_details' => $clients_details,
-                'ClientAddreses' => $ClientAddreses,
-                'ClientBanks' => $ClientBanks,
-            ]);
+
+            if ($year == 2022) {
+                return view('User.catalog_22.client_catalog_22', [
+                    'clients_details' => $clients_details,
+                    'ClientAddreses' => $ClientAddreses,
+                    'ClientBanks' => $ClientBanks,
+                ]);
+            } elseif ($year == 2023) {
+                return view('User.catalog_23.client_catalog_23', [
+                    'clients_details' => $clients_details,
+                    'ClientAddreses' => $ClientAddreses,
+                    'ClientBanks' => $ClientBanks,
+                ]);
+            } elseif ($year == 2024) {
+                return view('User.catalog_24.client_catalog_24', [
+                    'clients_details' => $clients_details,
+                    'ClientAddreses' => $ClientAddreses,
+                    'ClientBanks' => $ClientBanks,
+                ]);
+            } else {
+                return redirect()->back()->with('error', 'Invalid year provided');
+            }
         } else {
             return redirect()->back();
         }
     }
+
+
 
 
 

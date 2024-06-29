@@ -92,103 +92,42 @@
         <div class="form-group">
           <label class="m-0">State Code</label>
           <select class="form-control rounded-0" name="State" id="State">
-            <option>Select Option</option>
-            <option value="ANDHRAPRADESH">
-              ANDHRA PRADESH
-            </option>
-            <option value="ARUNACHALPRADESH">
-              ARUNACHAL PRADESH
-            </option>
-            <option value="ASSAM">ASSAM</option>
-            <option value="BIHAR">BIHAR</option>
-            <option value="CHANDIGARH">
-              CHANDIGARH
-            </option>
-            <option value="CHHATISHGARH">
-              CHHATISHGARH
-            </option>
-            <option value="DADRANAGARHAVELI">
-              DADRA &amp; NAGAR HAVELI
-            </option>
-            <option value="DAMANDIU">
-              DAMAN &amp; DIU
-            </option>
-            <option selected="selected" value="DELHI">
-              DELHI
-            </option>
-            <option value="GOA">GOA</option>
-            <option value="GUJARAT">
-              GUJARAT
-            </option>
-            <option value="HARYANA">
-              HARYANA
-            </option>
-            <option value="HIMACHALPRADESH">
-              HIMACHAL PRADESH
-            </option>
-            <option value="JAMMUKASHMIR">
-              JAMMU &amp; KASHMIR
-            </option>
-            <option value="JHARKHAND">
-              JHARKHAND
-            </option>
-            <option value="KARNATAKA">
-              KARNATAKA
-            </option>
-            <option value="KERALA">KERALA</option>
-            <option value="LAKHSWADEEP">
-              LAKHSWADEEP
-            </option>
-            <option value="LADAKH">LADAKH</option>
-            <option value="MADHYAPRADESH">
-              MADHYA PRADESH
-            </option>
-            <option value="MAHARASHTRA">
-              MAHARASHTRA
-            </option>
-            <option value="MANIPUR">
-              MANIPUR
-            </option>
-            <option value="MEGHALAYA">
-              MEGHALAYA
-            </option>
-            <option value="MIZORAM">
-              MIZORAM
-            </option>
-            <option value="NAGALAND">
-              NAGALAND
-            </option>
-            <option value="ORISSA">ORISSA</option>
-            <option value="PONDICHERRY">
-              PONDICHERRY
-            </option>
-            <option value="PUNJAB">PUNJAB</option>
-            <option value="RAJASTHAN">
-              RAJASTHAN
-            </option>
-            <option value="SIKKIM">SIKKIM</option>
-            <option value="TAMILNADU">
-              TAMIL NADU
-            </option>
-            <option value="TELANGANA">
-              TELANGANA
-            </option>
-            <option value="TRIPURA">
-              TRIPURA
-            </option>
-            <option value="UTTARANCHAL">
-              UTTARAKHAND
-            </option>
-            <option value="UTTARPRADESH">
-              UTTAR PRADESH
-            </option>
-            <option value="WESTBENGAL">
-              WEST BENGAL
-            </option>
-            <option value="StateoutsideIndia">
-              State outside India
-            </option>
-            <option value="NotInit"></option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Goa">Goa</option>
+            <option value="Chattisgarh">Chattisgarh</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Daman and Diu">Daman and Diu</option>
+            <option value="Dadra and Nagar Hav.">Dadra and Nagar Hav.</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Lakshadweep">Lakshadweep</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Megalaya">Megalaya</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Pondicherry">Pondicherry</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+            <option value="Andaman and Nico.In.">Andaman and Nico.In.</option>
           </select>
         </div>
         <!-- Country Code -->
