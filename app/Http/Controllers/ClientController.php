@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\BankCode;
 use App\Models\Client;
+use App\Models\client22;
+use App\Models\client23;
+use App\Models\client24;
 use App\Models\ClientAddress;
 use App\Models\ClientBank;
 use App\Models\ClientSalary;
@@ -61,24 +64,31 @@ class ClientController extends Controller
             $clients_details = Client::where('id', '=', $client_id)->first();
             $ClientAddreses = ClientAddress::where('id', '=', $client_id)->get();
             $ClientBanks = ClientBank::where('id', '=', $client_id)->get();
-
+            // Retrieve selected income types for the client
+            $selectedIncomeTypes = IncomeType::where('client_id', '=', $client_id)->pluck('income_type')->toArray();
+            // dd($selectedIncomeTypes);
             if ($year == 2022) {
                 return view('User.catalog_22.client_catalog_22', [
                     'clients_details' => $clients_details,
                     'ClientAddreses' => $ClientAddreses,
                     'ClientBanks' => $ClientBanks,
+                    'selectedIncomeTypes' => $selectedIncomeTypes,
                 ]);
             } elseif ($year == 2023) {
                 return view('User.catalog_23.client_catalog_23', [
                     'clients_details' => $clients_details,
                     'ClientAddreses' => $ClientAddreses,
                     'ClientBanks' => $ClientBanks,
+                    'selectedIncomeTypes' => $selectedIncomeTypes,
                 ]);
             } elseif ($year == 2024) {
                 return view('User.catalog_24.client_catalog_24', [
                     'clients_details' => $clients_details,
                     'ClientAddreses' => $ClientAddreses,
                     'ClientBanks' => $ClientBanks,
+                    'selectedIncomeTypes' => $selectedIncomeTypes,
+                    'client_id' => $client_id,
+                    'year' => $year,
                 ]);
             } else {
                 return redirect()->back()->with('error', 'Invalid year provided');
@@ -359,34 +369,65 @@ class ClientController extends Controller
         if (Auth::id()) {
             $userId = Auth::id();
             $client_id = $request->input('client_id');
+            $year = $request->input('year');
 
             // Retrieving array inputs
-            $properties = $request->input('properties', []);
+            $NameOfDistrict = $request->input('NameOfDistrict', []);
             $pinCodes = $request->input('PinCode', []);
             $measurementOfLands = $request->input('MeasurementOfLand', []);
             $agriLandOwnedFlags = $request->input('AgriLandOwnedFlag', []);
             $agriLandIrrigatedFlags = $request->input('AgriLandIrrigatedFlag', []);
+            $otherExemptIncomes = $request->input('other_exempt_income', []);
+            $otherExemptSources = $request->input('other_exempt_source', []);
+            $otherExemptDescriptions = $request->input('other_exempt_description', []);
+            $otherExemptAmounts = $request->input('other_exempt_amount', []);
+            $interestIncomePPFOthers = $request->input('interest_income_ppf_other', []);
+            $interestIncomePPFAmounts = $request->input('interest_income_ppf_amount', []);
 
             // Creating the agriData array
             $agriData = [
                 'GrossAgriRecpt' => $request->input('GrossAgriRecpt'),
                 'ExpIncAgri' => $request->input('ExpIncAgri'),
                 'UnabAgriLossPrev8' => $request->input('UnabAgriLossPrev8'),
-                'AgriIncRule7and8' => $request->input('AgriIncRule7and8'),
                 'NetAgriIncOrOthrIncRule7' => $request->input('NetAgriIncOrOthrIncRule7'),
-                'properties' => $properties,
+                'NameOfDistrict' => $NameOfDistrict,
                 'PinCode' => $pinCodes,
                 'MeasurementOfLand' => $measurementOfLands,
                 'AgriLandOwnedFlag' => $agriLandOwnedFlags,
                 'AgriLandIrrigatedFlag' => $agriLandIrrigatedFlags,
+                'other_exempt_income' => $otherExemptIncomes,
+                'other_exempt_source' => $otherExemptSources,
+                'other_exempt_description' => $otherExemptDescriptions,
+                'other_exempt_amount' => $otherExemptAmounts,
+                'interest_income_ppf_other' => $interestIncomePPFOthers,
+                'interest_income_ppf_amount' => $interestIncomePPFAmounts,
             ];
-
-            // Save data in database
-            $ClientExemptIncome = ExemptIncome::create([
-                'admin_or_user_id' => $userId,
-                'client_id' => $client_id,
-                'exept_income_data' => json_encode($agriData)
-            ]);
+            // dd($agriData);
+            // Save data in the appropriate table based on the year
+            if ($year == '2022') {
+                $ClientExemptIncome = client22::create([
+                    'admin_or_user_id' => $userId,
+                    'client_id' => $client_id,
+                    'year' => $year,
+                    'exempt_income_data' => json_encode($agriData)
+                ]);
+            } elseif ($year == '2023') {
+                $ClientExemptIncome = client23::create([
+                    'admin_or_user_id' => $userId,
+                    'client_id' => $client_id,
+                    'year' => $year,
+                    'exempt_income_data' => json_encode($agriData)
+                ]);
+            } elseif ($year == '2024') {
+                $ClientExemptIncome = client24::create([
+                    'admin_or_user_id' => $userId,
+                    'client_id' => $client_id,
+                    'year' => $year,
+                    'exempt_income_data' => json_encode($agriData)
+                ]);
+            } else {
+                return response()->json(['error' => 'Invalid year specified'], 400);
+            }
 
             return response()->json(['success' => 'Client Exempt Income details Added Successfully']);
         } else {

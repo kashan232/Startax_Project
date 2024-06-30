@@ -1,12 +1,12 @@
-@include('User.include.header_include');
+@include('User.include.header_include')
 
 <div class="wrapper">
   <!-- Navbar -->
-  @include('User.include.navbar_include');
+  @include('User.include.navbar_include')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @include('User.include.sidebar_include');
+  @include('User.include.sidebar_include')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -201,15 +201,15 @@
                         </div>
 
                         <div class="mt-3 inerr-tab-cntnt active">
-                          @include('User.permanent_details_froms.basic_details');
+                          @include('User.permanent_details_froms.basic_details')
                         </div>
 
                         <div class="mt-3 inerr-tab-cntnt">
-                          @include('User.permanent_details_froms.address');
+                          @include('User.permanent_details_froms.address')
                         </div>
 
                         <div class="mt-3 inerr-tab-cntnt">
-                          @include('User.permanent_details_froms.banks');
+                          @include('User.permanent_details_froms.banks')
                         </div>
                       </div>
                     </div>
@@ -6698,7 +6698,7 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-@include('User.include.footer_include');
+@include('User.include.footer_include')
 
 
 <script>

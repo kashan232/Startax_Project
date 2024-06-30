@@ -1,10 +1,10 @@
-@include('User.include.header_include');
+@include('User.include.header_include')
 <div class="wrapper">
   <!-- Navbar -->
-  @include('User.include.navbar_include');
+  @include('User.include.navbar_include')
   <!-- /.navbar -->
   <!-- Main Sidebar Container -->
-  @include('User.include.sidebar_include');
+  @include('User.include.sidebar_include')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -116,4 +116,4 @@
   <!-- /.content-wrapper -->
 </div>
 <!-- ./wrapper -->
-@include('User.include.footer_include');
+@include('User.include.footer_include')

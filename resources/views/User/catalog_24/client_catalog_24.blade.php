@@ -1,12 +1,21 @@
-@include('User.include.header_include');
+@include('User.include.header_include')
 
 <div class="wrapper">
+  <style>
+    .income-content {
+      display: none;
+    }
+
+    .income-content.active {
+      display: block;
+    }
+  </style>
   <!-- Navbar -->
-  @include('User.include.navbar_include');
+  @include('User.include.navbar_include')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @include('User.include.sidebar_include');
+  @include('User.include.sidebar_include')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -120,14 +129,10 @@
                             </label>
                           </div>
                         </div>
-                        <button type="submit" class="btn">Save</button>
+                        <button type="submit" class="btn btn-primary mt-4 mb-4">Save</button>
                       </form>
 
                     </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
                   </div>
                 </div>
               </div>
@@ -212,15 +217,15 @@
                         </div>
 
                         <div class="mt-3 inerr-tab-cntnt active">
-                          @include('User.permanent_details_froms.basic_details');
+                          @include('User.permanent_details_froms.basic_details')
                         </div>
 
                         <div class="mt-3 inerr-tab-cntnt">
-                          @include('User.permanent_details_froms.address');
+                          @include('User.permanent_details_froms.address')
                         </div>
 
                         <div class="mt-3 inerr-tab-cntnt">
-                          @include('User.permanent_details_froms.banks');
+                          @include('User.permanent_details_froms.banks')
                         </div>
                       </div>
                     </div>
@@ -229,32 +234,32 @@
                       <div class="p-tab-c1">
                         <span>02 Income</span>
                         <div class="inerr_taabs-tab-btns mb-4">
-                          <ul>
-                            <li class="btn btn-block btn-outline-primary btn-flat active">
+                          <ul id="incomeTabs">
+                            <li class="btn btn-block btn-outline-primary btn-flat income-tab @if (in_array('salary', $selectedIncomeTypes)) active @endif" data-tab="salary">
                               <span><i class="fas fa-list-ol"></i></span>
                               <span>Salary</span>
                             </li>
-                            <li class="btn btn-block btn-outline-primary btn-flat">
+                            <li class="btn btn-block btn-outline-primary btn-flat income-tab @if (in_array('business', $selectedIncomeTypes)) active @endif" data-tab="business">
                               <span><i class="fas fa-handshake"></i></span>
                               <span>Business</span>
                             </li>
-                            <li class="btn btn-block btn-outline-primary btn-flat">
+                            <li class="btn btn-block btn-outline-primary btn-flat income-tab @if (in_array('house_property', $selectedIncomeTypes)) active @endif" data-tab="house_property">
                               <span><i class="fas fa-home"></i></span>
                               <span>House Property</span>
                             </li>
-                            <li class="btn btn-block btn-outline-primary btn-flat">
+                            <li class="btn btn-block btn-outline-primary btn-flat income-tab @if (in_array('capital_gain', $selectedIncomeTypes)) active @endif" data-tab="capital_gain">
                               <span><i class="fab fa-creative-commons-share"></i></span>
                               <span>Capital Gain</span>
                             </li>
-                            <li class="btn btn-block btn-outline-primary btn-flat">
+                            <li class="btn btn-block btn-outline-primary btn-flat income-tab @if (in_array('VDAincome', $selectedIncomeTypes)) active @endif" data-tab="VDAincome">
                               <span><i class="fab fa-creative-commons-share"></i></span>
                               <span>VDA Forms</span>
                             </li>
-                            <li class="btn btn-block btn-outline-primary btn-flat">
+                            <li class="btn btn-block btn-outline-primary btn-flat income-tab @if (in_array('exempt_income', $selectedIncomeTypes)) active @endif" data-tab="exempt_income">
                               <span><i class="fab fa-creative-commons-share"></i></span>
                               <span>Exempt Income</span>
                             </li>
-                            <li class="btn btn-block btn-outline-primary btn-flat">
+                            <li class="btn btn-block btn-outline-primary btn-flat income-tab @if (in_array('other_income', $selectedIncomeTypes)) active @endif" data-tab="other_income">
                               <span><i class="far fa-window-restore"></i></span>
                               <span>Other Income</span>
                             </li>
@@ -3295,7 +3300,6 @@
                           <h5 class="pt-3">
                             <strong> VDA FORM</strong>
                           </h5>
-
                           <form action="#">
                             <div class="card card-body">
                               <div class="form_heading">
@@ -3398,260 +3402,7 @@
                           <h5 class="pt-3">
                             <strong>Exempt Income</strong>
                           </h5>
-
-                          <form action="#">
-                            <div class="card card-body">
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div class="row align-items-center">
-                                    <div class="col-md-10">
-                                      <div class="form-group">
-                                        <label>Interest Income from PPF</label>
-                                        <input type="text" class="form-control rounded-0" placeholder="Enter Your Interest Income" />
-                                        <span>Example: Interest earned on PPF
-                                        </span>
-                                      </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                      <div class="icon_throw">
-                                        <i class="fas fa-list"></i>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div class="col-md-12 div_throw">
-                                  <table class="table table-responsive">
-                                    <tbody>
-                                      <tr>
-                                        <td>
-                                          <div class="form-group">
-                                            <label class="m-0">Any Other Interest from
-                                              PPF</label>
-                                            <input type="text" class="form-control rounded-0" placeholder="Enter Your Nutration" />
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <div class="form-group">
-                                            <label class="m-0">Amount</label>
-                                            <input type="number" class="form-control rounded-0" placeholder="Enter Your Amount" />
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <!-- Cancel Icon -->
-                                          <div class="form-group d-flex" style="flex-direction: column">
-                                            <label class="m-0">Cancel</label>
-                                            <div class="cancel btn btn-danger">
-                                              <i class="fas fa-trash"></i>
-                                            </div>
-                                          </div>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                  <button type="button" class="mb-3 w-auto btn btn-block bg-gradient-primary btn-flat">
-                                    Add More
-                                  </button>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <div class="row align-items-center">
-                                    <div class="col-md-10">
-                                      <div class="form-group">
-                                        <label>Any Other Exempt Income
-                                        </label>
-                                        <input type="text" class="form-control rounded-0" placeholder="Enter Your Interest Income" />
-                                        <span>Specify any other exempt income
-                                        </span>
-                                      </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                      <div class="icon_throw">
-                                        <i class="fas fa-list"></i>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div class="col-md-12 div_throw">
-                                  <table class="table table-responsive">
-                                    <tbody>
-                                      <tr>
-                                        <td>
-                                          <div class="form-group">
-                                            <label class="m-0">Source</label>
-                                            <select class="form-control rounded-0">
-                                              <option>Select Option</option>
-                                              <option value="O">
-                                                details
-                                              </option>
-                                              <option value="H">
-                                                details
-                                              </option>
-                                            </select>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <div class="form-group">
-                                            <label class="m-0">Amount</label>
-                                            <input type="text" class="form-control rounded-0" placeholder="Enter Your Amount" />
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <div class="form-group">
-                                            <label class="m-0">Description</label>
-                                            <input type="number" class="form-control rounded-0" placeholder="Enter Your Description" />
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <!-- Cancel Icon -->
-                                          <div class="form-group d-flex" style="flex-direction: column">
-                                            <label class="m-0">Cancel</label>
-                                            <div class="cancel btn btn-danger">
-                                              <i class="fas fa-trash"></i>
-                                            </div>
-                                          </div>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                  <button type="button" class="mb-3 w-auto btn btn-block bg-gradient-primary btn-flat">
-                                    Add More
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="card card-body">
-                              <h5 class="pt-3 pb-3">
-                                <strong>Agriculture Income</strong>
-                              </h5>
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <!-- Gross Agriculture Receipt -->
-                                  <div class="form-group">
-                                    <label class="m-0">Gross Agriculture Receipt</label>
-                                    <br />
-                                    <input type="text" class="form-control rounded-0" placeholder="Enter Your Other Income" />
-                                    <span>Specify gross agricultural
-                                      income</span>
-                                  </div>
-                                  <!-- Expenditure On Agriculture -->
-                                  <div class="form-group">
-                                    <label class="m-0">Expenditure On Agriculture</label>
-                                    <input type="text" class="form-control rounded-0" placeholder="Enter Your Amount" />
-                                    <span>Specify expenditure on agriculture
-                                      sources</span>
-                                  </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                  <!-- Unabsorbed Agriculture Loss -->
-                                  <div class="form-group">
-                                    <label class="m-0">Unabsorbed Agriculture Loss</label>
-                                    <input type="text" class="form-control rounded-0" placeholder="Enter Your Amount" />
-                                    <span>Specify unabsorbed agriculture
-                                      loss</span>
-                                  </div>
-                                  <!-- Net Agriculture Receipt -->
-                                  <div class="form-group">
-                                    <label class="m-0">Net Agriculture Receipt
-                                      (Auto-calculated)</label>
-                                    <input type="text" class="form-control rounded-0" placeholder="Enter Your Amount" />
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="row">
-                                <div class="form_heading">
-                                  <h5 class="mt-3">
-                                    <strong>Agriculture Land Details
-                                    </strong>
-                                  </h5>
-                                  <span>These fields are optional. Enter these
-                                    values if Net Agriculture Receipt
-                                    exceeds Rs. 5 Lakhs:
-                                  </span>
-                                </div>
-
-                                <div class="col-md-12">
-                                  <table class="table table-responsive">
-                                    <tbody>
-                                      <tr>
-                                        <td>
-                                          <div class="form-group">
-                                            <label class="m-0">Name Of District</label>
-                                            <input type="text" class="form-control rounded-0" placeholder="Enter Your name" />
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <div class="form-group">
-                                            <label class="m-0">Pincode</label>
-                                            <input type="number" class="form-control rounded-0" placeholder="Enter your Pincode" />
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <div class="form-group">
-                                            <label class="m-0">Measurement (Acres)</label>
-                                            <input type="date" class="form-control rounded-0" placeholder="Enter Your Measurement (Acres)" />
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <div class="form-group">
-                                            <label class="m-0">Ownership Status</label>
-                                            <select class="form-control rounded-0">
-                                              <option>Select Option</option>
-                                              <option value="Owned">
-                                                Owned
-                                              </option>
-                                              <option value="Leased">
-                                                Held on Lease
-                                              </option>
-                                            </select>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <div class="form-group">
-                                            <label class="m-0">Source of water
-                                            </label>
-                                            <select class="form-control rounded-0">
-                                              <option>Select Option</option>
-                                              <option value="Irrigated">
-                                                Irrigated
-                                              </option>
-                                              <option value="RainFed">
-                                                Rain-Fed
-                                              </option>
-                                            </select>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <!-- Cancel Icon -->
-                                          <div class="form-group d-flex" style="flex-direction: column">
-                                            <label class="m-0">Cancel</label>
-                                            <div class="cancel btn btn-danger">
-                                              <i class="fas fa-trash"></i>
-                                            </div>
-                                          </div>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                  <button type="button" class="mb-3 w-auto btn btn-block bg-gradient-primary btn-flat">
-                                    Add More
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="col-md-12 d-flex">
-                              <input type="submit" style="width: fit-content" class="btn btn-block btn-primary" value="Submit" />
-                              <button class="Back_button btn btn-block bg-gradient-warning btn-flat w-auto text-white mt-0 mb-0 ml-4 h-100">
-                                Back
-                              </button>
-                            </div>
-                          </form>
+                          @include('User.income_forms.exempt_income.exempt_income')
                         </div>
                         <!-- VDA FORM -->
                         <!-- Others Income Sourse -->
@@ -6708,7 +6459,37 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-@include('User.include.footer_include');
+@include('User.include.footer_include')
+
+
+  <script>
+    // JavaScript to handle tab switching
+    document.addEventListener('DOMContentLoaded', function () {
+        const tabs = document.querySelectorAll('.income-tab');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function () {
+                const selectedTab = this.getAttribute('data-tab');
+
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+
+                // Add active class to the clicked tab
+                this.classList.add('active');
+
+                // Show only the corresponding content
+                const contentDivs = document.querySelectorAll('.income-content');
+                contentDivs.forEach(div => {
+                    if (div.id === selectedTab) {
+                        div.classList.add('active');
+                    } else {
+                        div.classList.remove('active');
+                    }
+                });
+            });
+        });
+    });
+</script>
 
 
 <script>

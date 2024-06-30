@@ -15,6 +15,6 @@ class client24 extends Model
         'admin_or_user_id',
         'client_id',
         'year',
-        'house_property_data'
+        'exempt_income_data'
     ];
 }
