@@ -405,21 +405,21 @@ class ClientController extends Controller
             // dd($agriData);
             // Save data in the appropriate table based on the year
             if ($year == '2022') {
-                $ClientExemptIncome = client22::create([
+                $ClientExemptIncome = client22::where('client_id', $client_id)->where('year', $year)->update([
                     'admin_or_user_id' => $userId,
                     'client_id' => $client_id,
                     'year' => $year,
                     'exempt_income_data' => json_encode($agriData)
                 ]);
             } elseif ($year == '2023') {
-                $ClientExemptIncome = client23::create([
+                $ClientExemptIncome = client23::where('client_id', $client_id)->where('year', $year)->update([
                     'admin_or_user_id' => $userId,
                     'client_id' => $client_id,
                     'year' => $year,
                     'exempt_income_data' => json_encode($agriData)
                 ]);
             } elseif ($year == '2024') {
-                $ClientExemptIncome = client24::create([
+                $ClientExemptIncome = client24::where('client_id', $client_id)->where('year', $year)->update([
                     'admin_or_user_id' => $userId,
                     'client_id' => $client_id,
                     'year' => $year,
@@ -434,4 +434,67 @@ class ClientController extends Controller
             return response()->json(['error' => 'User not authenticated'], 403);
         }
     }
+
+    public function store_vda_form(Request $request)
+    {
+        if (Auth::id()) {
+            $userId = Auth::id();
+            $client_id = $request->input('client_id');
+            $year = $request->input('year');
+    
+            // Creating the vdaData array
+            $vdaData = [
+                'asset_name' => $request->input('asset_name'),
+                'buy_date' => $request->input('buy_date'),
+                'sell_date' => $request->input('sell_date'),
+                'buy_value' => $request->input('buy_value'),
+                'sell_value' => $request->input('sell_value'),
+                'income_head' => $request->input('income_head'),
+                'gains' => $request->input('gains'),
+            ];
+    
+            // Save data in the appropriate table based on the year
+            if ($year == '2022') {
+                $ClientVdaIncome = client22::where('client_id', $client_id)->where('year', $year)->updateOrInsert(
+                    [
+                        'client_id' => $client_id,
+                        'year' => $year,
+                    ],
+                    [
+                        'admin_or_user_id' => $userId,
+                        'vda_form_data' => json_encode($vdaData),
+                    ]
+                );
+            } elseif ($year == '2023') {
+                $ClientVdaIncome = client23::where('client_id', $client_id)->where('year', $year)->updateOrInsert(
+                    [
+                        'client_id' => $client_id,
+                        'year' => $year,
+                    ],
+                    [
+                        'admin_or_user_id' => $userId,
+                        'vda_form_data' => json_encode($vdaData),
+                    ]
+                );
+            } elseif ($year == '2024') {
+                $ClientVdaIncome = client24::where('client_id', $client_id)->where('year', $year)->updateOrInsert(
+                    [
+                        'client_id' => $client_id,
+                        'year' => $year,
+                    ],
+                    [
+                        'admin_or_user_id' => $userId,
+                        'vda_form_data' => json_encode($vdaData),
+                    ]
+                );
+            } else {
+                return response()->json(['error' => 'Invalid year specified'], 400);
+            }
+    
+            return response()->json(['success' => 'VDA Income details Added Successfully']);
+        } else {
+            return response()->json(['error' => 'User not authenticated'], 403);
+        }
+    }
+    
 }

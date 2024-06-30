@@ -158,14 +158,7 @@
       </div>
     </div>
 
-    <div class="row" id="agricultureLandDetails" style="display: none;">
-      <div class="form_heading">
-        <h5 class="mt-3">
-          <strong>Agriculture Land Details</strong>
-        </h5>
-        <span>These fields are optional. Enter these values if Net Agriculture Receipt exceeds Rs. 5 Lakhs:</span>
-      </div>
-
+    <div class="row">
       <div class="col-md-12">
         <table id="agricultureTable" class="table table-responsive">
           <thead>
@@ -182,26 +175,26 @@
             <!-- Existing row, can be empty or filled as needed -->
             <tr>
               <td>
-                <input type="text" name="NameOfDistrict" class="form-control rounded-0" placeholder="Enter Your name" />
+                <input type="text" class="form-control rounded-0" placeholder="Enter Your name" />
               </td>
               <td>
-                <input type="number" name="PinCode" class="form-control rounded-0" placeholder="Enter your Pincode" />
+                <input type="number" class="form-control rounded-0" placeholder="Enter your Pincode" />
               </td>
               <td>
-                <input type="number" name="MeasurementOfLand" class="form-control rounded-0" placeholder="Enter Your Measurement (Acres)" />
+                <input type="date" class="form-control rounded-0" placeholder="Enter Your Measurement (Acres)" />
               </td>
               <td>
-                <select name="AgriLandOwnedFlag" class="form-control rounded-0">
+                <select class="form-control rounded-0">
                   <option>Select Option</option>
-                  <option value="O">Owned</option>
-                  <option value="H">Held on Lease</option>
+                  <option value="Owned">Owned</option>
+                  <option value="Leased">Held on Lease</option>
                 </select>
               </td>
               <td>
-                <select name="AgriLandIrrigatedFlag" class="form-control rounded-0">
+                <select class="form-control rounded-0">
                   <option>Select Option</option>
-                  <option value="IRG">Irrigated</option>
-                  <option value="RF">Rain-Fed</option>
+                  <option value="Irrigated">Irrigated</option>
+                  <option value="RainFed">Rain-Fed</option>
                 </select>
               </td>
               <td>
@@ -217,10 +210,12 @@
         </button>
       </div>
     </div>
+
+
   </div>
 
   <div class="col-md-12 d-flex">
-    <input type="submit" style="width: fit-content"id="submit_exmpte_income" class="btn btn-block btn-primary" value="Submit" />
+    <input type="submit" style="width: fit-content" id="submit_exmpte_income" class="btn btn-block btn-primary" value="Submit" />
     <button class="Back_button btn btn-block bg-gradient-warning btn-flat w-auto text-white mt-0 mb-0 ml-4 h-100">
       Back
     </button>
@@ -245,37 +240,6 @@
       agricultureLandDetailsDiv.style.display = 'none';
     }
   }
-  document.addEventListener('DOMContentLoaded', function() {
-    const addMoreBtn = document.getElementById('addMoreBtn');
-    const tableBody = document.querySelector('#agricultureTable tbody');
-
-    addMoreBtn.addEventListener('click', function() {
-      const newRow = document.createElement('tr');
-      newRow.innerHTML = `
-            <td><input type="text" name="NameOfDistrict" class="form-control rounded-0" placeholder="Enter Your name" /></td>
-            <td><input type="number" name="PinCode" class="form-control rounded-0" placeholder="Enter your Pincode" /></td>
-            <td><input type="number" name="MeasurementOfLand" class="form-control rounded-0" placeholder="Enter Your Measurement (Acres)" /></td>
-            <td>
-                <select name="AgriLandOwnedFlag" class="form-control rounded-0">
-                    <option>Select Option</option>
-                    <option value="O">Owned</option>
-                    <option value="H">Held on Lease</option>
-                </select>
-            </td>
-            <td>
-                <select name="AgriLandIrrigatedFlag" class="form-control rounded-0">
-                    <option>Select Option</option>
-                    <option value="IRG">Irrigated</option>
-                    <option value="RF">Rain-Fed</option>
-                </select>
-            </td>
-            <td>
-                <div class="cancel btn btn-danger"><i class="fas fa-trash"></i></div>
-            </td>
-        `;
-      tableBody.appendChild(newRow);
-    });
-  });
 
   document.addEventListener('DOMContentLoaded', function() {
     const addMoreSourceBtn = document.getElementById('addMoreSourceBtn');
@@ -353,6 +317,39 @@
   });
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const addMoreBtn = document.getElementById('addMoreBtn');
+    const tableBody = document.querySelector('#agricultureTable tbody');
+
+    addMoreBtn.addEventListener('click', function() {
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+            <td><input type="text" class="form-control rounded-0" placeholder="Enter Your name" /></td>
+            <td><input type="number" class="form-control rounded-0" placeholder="Enter your Pincode" /></td>
+            <td><input type="date" class="form-control rounded-0" placeholder="Enter Your Measurement (Acres)" /></td>
+            <td>
+                <select class="form-control rounded-0">
+                    <option>Select Option</option>
+                    <option value="Owned">Owned</option>
+                    <option value="Leased">Held on Lease</option>
+                </select>
+            </td>
+            <td>
+                <select class="form-control rounded-0">
+                    <option>Select Option</option>
+                    <option value="Irrigated">Irrigated</option>
+                    <option value="RainFed">Rain-Fed</option>
+                </select>
+            </td>
+            <td>
+                <div class="cancel btn btn-danger"><i class="fas fa-trash"></i></div>
+            </td>
+        `;
+      tableBody.appendChild(newRow);
+    });
+  });
+</script>
 <script>
   $(document).ready(function() {
     $('#submit_exmpte_income').click(function(event) {

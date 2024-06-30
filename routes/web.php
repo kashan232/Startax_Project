@@ -44,6 +44,7 @@ Route::post('/save-income-types', [ClientController::class, 'saveIncomeTypes']);
 // Salary routes
 Route::get('/store-client-salary', [ClientController::class, 'store_client_salary'])->name('store-client-salary');
 Route::get('/store-client-exempt-income', [ClientController::class, 'store_client_exempt_income'])->name('store-client-exempt-income');
+Route::get('/store-vda-form', [ClientController::class, 'store_vda_form'])->name('store-vda-form');
 Route::get('/store-house-property-seprate', [ClientYearController::class, 'store_house_property_seprate'])->name('store-house-property-seprate');
 
 

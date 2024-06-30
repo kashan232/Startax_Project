@@ -15,6 +15,8 @@ class client24 extends Model
         'admin_or_user_id',
         'client_id',
         'year',
-        'exempt_income_data'
+        'exempt_income_data',
+        'vda_form_data'
+
     ];
 }
